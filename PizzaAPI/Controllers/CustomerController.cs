@@ -16,7 +16,7 @@ namespace PizzaAPI.Controllers
     {
         private readonly APIDbContext _context;
 
-        CustomerController(APIDbContext context)
+        public CustomerController(APIDbContext context)
         {
             _context = context;
             if (_context.Customers.Count() == 0)
@@ -29,27 +29,45 @@ namespace PizzaAPI.Controllers
                         Password = "pass"
                     }
                     );
+                _context.Customers.Add(
+                    new Customer
+                    {
+                        FirstName = "Rob",
+                        Email = "r@a.com",
+                        Password = "pass"
+                    }
+                    );
+                _context.Customers.Add(
+                     new Customer
+                     {
+                         FirstName = "Tom",
+                         Email = "t@a.com",
+                         Password = "pass"
+                     }
+                     );
                 _context.SaveChanges();
             }
         }
-        // GET api/values
+        // GET api/Customer
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IEnumerable<Customer>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.Customers.ToListAsync<Customer>();
         }
 
-        // GET api/values/5
+        // GET api/Customer/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<Customer> Get(int id)
         {
-            return "value";
+            return await _context.Customers.FindAsync(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async void Post([FromBody] Customer value)
         {
+                _context.Customers.Add(value);
+                await _context.SaveChangesAsync();
         }
 
         // PUT api/values/5
@@ -61,6 +79,7 @@ namespace PizzaAPI.Controllers
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
+
         {
         }
     }
