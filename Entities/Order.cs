@@ -14,7 +14,7 @@ namespace Entities
         [Key]
         public int OrderID { set; get; }
         [Column(TypeName = "decimal(18,2)")]
-        public decimal TotalAmount { set; get; }
+        public decimal? TotalAmount { set; get; }
         [DataType(DataType.Text)]
         public string ItemList { set; get; }
         [DisplayName("Status")]

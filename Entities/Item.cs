@@ -17,6 +17,8 @@ namespace Entities
         public int ItemID { set; get; }
         [ForeignKey("ProductId")]
         public Product Product { set; get; }
+        [ForeignKey("CustomerId")]
+
         [DisplayName("Quantity")]
         public int qty { set; get; }
         [Column(TypeName = "decimal(18,2)")]
