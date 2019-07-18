@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+//using System.Web.Mvc;
 
 namespace Entities
 {
@@ -13,13 +13,13 @@ namespace Entities
         [DisplayName("First Name")]
         [DataType(DataType.Text)]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; }
         #endregion
         #region LastName
         [DisplayName("Last Name")]
         [DataType(DataType.Text)]
         [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
-        public string? LastName { get; set; }
+        public string LastName { get; set; }
         #endregion
         #region Email Address
         [Required(ErrorMessage = "Please enter a Email")]
@@ -29,16 +29,16 @@ namespace Entities
         #region Phone Number
         [MaxLength(10), MinLength(10)]
         [DataType(DataType.PhoneNumber)]
-        public string? Phone { get; set; }
+        public string Phone { get; set; }
         #endregion
         #region Address
         [DataType(DataType.Text)]
         [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters.")]
-        public string? Address { get; set; }
+        public string Address { get; set; }
         #endregion
         #region State
         [MaxLength(2), MinLength(2)]
-        public string? State { get; set; }
+        public string State { get; set; }
         #endregion
         #region Zip Code
         [DisplayName("Zip Code")]
