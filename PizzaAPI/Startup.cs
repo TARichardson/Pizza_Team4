@@ -31,6 +31,10 @@ namespace PizzaAPI
             options.UseSqlServer(
             Configuration.GetConnectionString("PizzaDB")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
