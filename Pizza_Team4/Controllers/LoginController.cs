@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace PizzaUI.Controllers
+namespace Pizza_Team4.Controllers
 {
     public class LoginController : Controller
     {

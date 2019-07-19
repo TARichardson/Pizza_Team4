@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankMVCApp.Controllers
+namespace Pizza_Team4.Controllers
 {
     public class MainMenuController : Controller
     {
