@@ -1,0 +1,105 @@
+@CHARSET "ISO-8859-1";
+
+#myCarousel {
+	padding: 0px;
+}
+
+body {
+	background-color: #F5F5F5;
+}
+
+.darkSection {
+	background-color: #2c3e50;
+	color: #F5F5F5;
+}
+
+.table thead {
+	background-color: #2c3e50;
+	color: #f5f5f5;
+}
+
+#marketplace-navbar{
+	top:110px;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+.showingTotal {
+	text-align: center;
+}
+
+form.inline-form {
+	display: inline;
+}
+
+.btn-danger-stale {
+    color: #ffffff;
+/*     background-color: #e74c3c; */
+    background-color: #f1998f;
+    border-color: #e74c3c;
+    cursor: default;
+}
+
+.btn-success-stale {
+    color: #ffffff;
+/*     background-color: #e74c3c; */
+
+/*     background-color: #f1998f; */
+/*     border-color: #e74c3c; */
+    background-color: #53d560;
+    border-color: #228534;
+    
+    cursor: default;
+}
+
+html, body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   background:#ff0;
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+   position:fixed;
+   bottom:0px;
+   width:100%;
+   height:30px;   /* Height of the footer */
+   background:#124156;
+   text-color:white;
+}
+
+.bgImg {
+  /* The image used */
+  background-image: url("resources/imgs/ravine.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* To get Bootstrap's Nav Dropdown to expand on hover */
+/* .dropdown:hover .dropdown-menu { */
+/* 	display: block; */
+/* 	z-index: 1000; */
+/* } */

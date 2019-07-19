@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Pizza_Team4.Models;
+using PizzaUI.Models;
 
-namespace Pizza_Team4.Controllers
+namespace PizzaUI.Controllers
 {
     public class HomeController : Controller
     {
