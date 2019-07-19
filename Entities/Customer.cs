@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
-    public class Customer
+    public class Customer : ICustomer
     {
         [Key]
         public int CustomerID { get; set; }
@@ -44,13 +44,54 @@ namespace Entities
         [DisplayName("Zip Code")]
         [MaxLength(5), MinLength(5)]
         [DataType(DataType.PostalCode)]
-        public decimal? ZipCode { get; set; }
+        public string ZipCode { get; set; }
         #endregion
         #region Password
         [Required(ErrorMessage = "Please Password"), MaxLength(20), MinLength(8)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         #endregion
+
+        public Customer() { }
+
+        public Customer(CustomerDTO dto)
+        {
+            FirstName = dto.FirstName;
+            LastName = dto.LastName;
+            Email = dto.Email;
+            Phone = dto.Phone;
+            Address = dto.Address;
+            State = dto.State;
+            ZipCode = dto.ZipCode;
+            Password = dto.Password;
+        }
+        public static Customer operator +(Customer cL, Customer cR)
+        {
+            Customer c = new Customer();
+            c.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
+            c.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
+            c.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
+            c.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
+            c.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
+            c.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
+            c.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
+            c.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
+            return c;
+        }
+        public static Customer operator +(Customer cL, CustomerDTO cR)
+        {
+            //Customer c = new Customer();
+            cL.CustomerID = cL.CustomerID;
+            cL.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
+            cL.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
+            cL.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
+            cL.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
+            cL.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
+            cL.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
+            cL.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
+            cL.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
+            return cL;
+        }
     }
 }
 
