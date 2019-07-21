@@ -6,44 +6,44 @@ using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
 
-namespace Models.EntityRepository
+namespace PizzaAPI.Models.EntityRepository
 {
     public class OrderRepository : IOrderRepository
     {
-        public ApplicationDbContext ApplicationDbContext { set; get; }
+        public APIDbContext APIDbContext { set; get; }
 
-        public OrderRepository(ApplicationDbContext ApplicationDbContext)
+        public OrderRepository(APIDbContext APIDbContext)
         {
-            this.ApplicationDbContext = ApplicationDbContext;
+            this.APIDbContext = APIDbContext;
         }
 
         public void Add(Order order)
         {
-            ApplicationDbContext.Orders.Add(order);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Orders.Add(order);
+            APIDbContext.SaveChanges();
         }
         
         public Order Delete(int id)
         {
-            Order order = ApplicationDbContext.Orders.Find(id);
+            Order order = APIDbContext.Orders.Find(id);
             if (order != null)
             {
-                ApplicationDbContext.Orders.Remove(order);
-                ApplicationDbContext.SaveChanges();
+                APIDbContext.Orders.Remove(order);
+                APIDbContext.SaveChanges();
             }
             return order;
         }
 
         public Order Get(int id)
         {
-            Order order = ApplicationDbContext.Orders.Find(id);
+            Order order = APIDbContext.Orders.Find(id);
             
             return order;
         }
 
         public List<Order> GetAll()
         {
-            return ApplicationDbContext.Orders.ToList();
+            return APIDbContext.Orders.ToList();
         }
 
         public List<Order> GetAll(int customerId)
@@ -52,8 +52,8 @@ namespace Models.EntityRepository
         }
         public void Update(Order order)
         {
-            ApplicationDbContext.Orders.Update(order);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Orders.Update(order);
+            APIDbContext.SaveChanges();
         }
     }
 }

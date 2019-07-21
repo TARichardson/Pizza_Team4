@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using PizzaAPI.Models;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI
 {

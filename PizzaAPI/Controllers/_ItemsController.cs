@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
-using Models.EntityRepository;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
@@ -15,15 +15,15 @@ namespace PizzaAPI.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly APIDbContext _context;
         private readonly IItemRepository itemRepository;
 
 
-        public ItemsController(ApplicationDbContext context, IItemRepository itemRepository)
+        public ItemsController(APIDbContext context, IItemRepository itemRepository)
         {
             _context = context;
             this.itemRepository = itemRepository;
-            this.itemRepository.ApplicationDbContext = context;
+            this.itemRepository.APIDbContext = context;
         }
 
         // GET: api/Items

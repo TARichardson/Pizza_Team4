@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
-using Models.EntityRepository;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
@@ -15,14 +15,14 @@ namespace PizzaAPI.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly APIDbContext _context;
         private readonly IOrderRepository orderRepository;
 
-        public OrdersController(ApplicationDbContext context, IOrderRepository orderRepository)
+        public OrdersController(APIDbContext context, IOrderRepository orderRepository)
         {
             _context = context;
             this.orderRepository = orderRepository;
-            this.orderRepository.ApplicationDbContext = _context;
+            this.orderRepository.APIDbContext = _context;
         }
 
         // GET: api/Orders

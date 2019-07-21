@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
 
-namespace Models.EntityRepository
+namespace PizzaAPI.Models.EntityRepository
 {
     public interface ICustomerRepository
     {
-        ApplicationDbContext ApplicationDbContext { set; get; }
+        APIDbContext APIDbContext { set; get; }
         
         
         void Add(Customer customer);
