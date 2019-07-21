@@ -51,7 +51,7 @@ namespace PizzaAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutItem(int id, Item item)
         {
-            if (id != item.ItemId)
+            if (id != item.ItemID)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace PizzaAPI.Controllers
         {
             itemRepository.Add(item);
 
-            return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
+            return CreatedAtAction("GetItem", new { id = item.ItemID}, item);
         }
 
         // DELETE: api/Items/5
@@ -101,7 +101,7 @@ namespace PizzaAPI.Controllers
 
         private bool ItemExists(int id)
         {
-            return _context.Items.Any(e => e.ItemId == id);
+            return _context.Items.Any(e => e.ItemID == id);
         }
     }
 }

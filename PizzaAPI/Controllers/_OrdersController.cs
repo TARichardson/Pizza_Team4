@@ -50,7 +50,7 @@ namespace PizzaAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutOrder(int id, Order order)
         {
-            if (id != order.OrderId)
+            if (id != order.OrderID)
             {
                 return BadRequest();
             }
@@ -79,7 +79,7 @@ namespace PizzaAPI.Controllers
         public ActionResult<Order> PostOrder(Order order)
         {
             orderRepository.Add(order);
-            return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
+            return CreatedAtAction("GetOrder", new { id = order.OrderID}, order);
         }
 
         // DELETE: api/Orders/5
@@ -98,7 +98,7 @@ namespace PizzaAPI.Controllers
 
         private bool OrderExists(int id)
         {
-            return _context.Orders.Any(e => e.OrderId == id);
+            return _context.Orders.Any(e => e.OrderID == id);
         }
     }
 }

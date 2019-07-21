@@ -26,7 +26,7 @@ namespace Pizza_Team4.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login([Bind("Email, Password")] Login login)
+        public IActionResult Login([Bind("Email, Password")] CustomerDTO login)
         {
             if (ModelState.IsValid)
             {

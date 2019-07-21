@@ -48,7 +48,7 @@ namespace PizzaAPI.Models.EntityRepository
 
         public List<Item> GetAll(int orderId)
         {
-            return GetAll().Where(b=>b.OrderId==orderId).ToList();
+            return GetAll().Where(b=>b.ItemID==orderId).ToList();
         }
         public void Update(Item item)
         {
