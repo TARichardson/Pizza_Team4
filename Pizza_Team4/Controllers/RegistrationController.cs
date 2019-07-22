@@ -6,7 +6,7 @@ using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Pizza_Team4.Controllers
+namespace PizzaUI.Controllers
 {
     public class RegistrationController : Controller
     {

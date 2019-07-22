@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Pizza_Team4.Controllers
+namespace PizzaUI.Controllers
 {
     public class LoginController : Controller
     {
@@ -26,15 +26,21 @@ namespace Pizza_Team4.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login([Bind("Email, Password")] CustomerDTO login)
+        public IActionResult Login([Bind("Email, Password")] Login login)
         {
             if (ModelState.IsValid)
             {
                 
                 
-                return RedirectToAction(nameof(Login));
+                return RedirectToAction(nameof(OrderMenu));
             }
             return View(login);
         }
+
+        public IActionResult OrderMenu()
+        {
+            return View();
+        }
+
     }
 }

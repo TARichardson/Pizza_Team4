@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Pizza_Team4.Controllers
+namespace BankMVCApp.Controllers
 {
     public class MainMenuController : Controller
     {
@@ -12,5 +12,32 @@ namespace Pizza_Team4.Controllers
         {
             return View();
         }
+
+        public IActionResult Pizza()
+        {
+            return View();
+        }
+
+        public IActionResult Stromboli()
+        {
+            return View();
+        }
+
+        public IActionResult Calzone()
+        {
+            return View();
+        }
+
+        public IActionResult Sides()
+        {
+            return View();
+        }
+
+        public IActionResult Drinks()
+        {
+            return View();
+        }
+
+
     }
 }

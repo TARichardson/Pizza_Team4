@@ -27,20 +27,19 @@
     <link rel="stylesheet" type="text/css" href="~/resources/styles/custom.css" />
 
 </head>
-<body style="background-color:white">
+<body>
     <nav class="navbar navbar-default navbar-fixed-top" style="padding-top:5px; padding-bottom:5px; font-size:25px; font-family: playball">
         <div class="container-fluid">
             <ul class="nav navbar-nav text-capitalize">
-                <li class="active"><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                <li><a asp-controller="Home" asp-action="Pizza">Pizza</a></li>
-                <li><a asp-controller="Home" asp-action="Stromboli">Stromboli</a></li>
-                <li><a asp-controller="Home" asp-action="Calzone">Calzone</a></li>
-                <li><a asp-controller="Home" asp-action="Sides">Sides</a></li>
-                <li><a asp-controller="Home" asp-action="Drinks">Drinks</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Index">Welcome</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Pizza">Pizza</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Stromboli">Stromboli</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Calzone">Calzone</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Sides">Sides</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Drinks">Drinks</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right text-capitalize">
-                <li><a asp-controller="Registration" asp-action="Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                <li><a asp-controller="Login" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a asp-controller="Login" asp-action="Login"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
             </ul>
         </div>
     </nav>
