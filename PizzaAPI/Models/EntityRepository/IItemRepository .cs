@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
 
-namespace Models.EntityRepository
+namespace PizzaAPI.Models.EntityRepository
 {
     public interface IItemRepository
     {
-        ApplicationDbContext ApplicationDbContext { set; get; }
+        APIDbContext APIDbContext { set; get; }
         
         void Add(Item item);
         Item Delete(int id);

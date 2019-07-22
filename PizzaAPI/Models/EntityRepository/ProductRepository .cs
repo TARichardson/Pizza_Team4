@@ -10,40 +10,40 @@ namespace Models.EntityRepository
 {
     public class ProductRepository : IProductRepository
     {
-        public ApplicationDbContext ApplicationDbContext { set; get; }
+        public APIDbContext APIDbContext { set; get; }
 
-        public ProductRepository(ApplicationDbContext ApplicationDbContext)
+        public ProductRepository(APIDbContext APIDbContext)
         {
-            this.ApplicationDbContext = ApplicationDbContext;
+            this.APIDbContext = APIDbContext;
         }
 
         public void Add(Product product)
         {
-            ApplicationDbContext.Products.Add(product);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Products.Add(product);
+            APIDbContext.SaveChanges();
         }
         
         public Product Delete(int id)
         {
-            Product product = ApplicationDbContext.Products.Find(id);
+            Product product = APIDbContext.Products.Find(id);
             if (product != null)
             {
-                ApplicationDbContext.Products.Remove(product);
-                ApplicationDbContext.SaveChanges();
+                APIDbContext.Products.Remove(product);
+                APIDbContext.SaveChanges();
             }
             return product;
         }
 
         public Product Get(int id)
         { 
-            Product product = ApplicationDbContext.Products.Find(id);
+            Product product = APIDbContext.Products.Find(id);
             
             return product;
         }
 
         public List<Product> GetAll()
         {
-            return ApplicationDbContext.Products.ToList();
+            return APIDbContext.Products.ToList();
         }
 
         public List<Product> GetAll(int categoryId)
@@ -52,8 +52,8 @@ namespace Models.EntityRepository
         }
         public void Update(Product product)
         {
-            ApplicationDbContext.Products.Update(product);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Products.Update(product);
+            APIDbContext.SaveChanges();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Models.EntityRepository
 {
     public interface IProductRepository
     {
-        ApplicationDbContext ApplicationDbContext { set; get; }
+        APIDbContext APIDbContext { set; get; }
         
         void Add(Product product);
         Product Delete(int id);

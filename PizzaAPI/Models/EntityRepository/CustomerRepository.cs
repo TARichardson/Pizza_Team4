@@ -10,33 +10,33 @@ namespace Models.EntityRepository
 {
     public class CustomerRepository : ICustomerRepository
     {
-        public ApplicationDbContext ApplicationDbContext { set; get; }
+        public APIDbContext APIDbContext { set; get; }
 
-        public CustomerRepository(ApplicationDbContext ApplicationDbContext)
+        public CustomerRepository(APIDbContext APIDbContext)
         {
-            this.ApplicationDbContext = ApplicationDbContext;
+            this.APIDbContext = APIDbContext;
         }
 
         public void Add(Customer customer)
         {
-            ApplicationDbContext.Customers.Add(customer);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Customers.Add(customer);
+            APIDbContext.SaveChanges();
         }
         
         public Customer Delete(int id)
         {
-            Customer customer = ApplicationDbContext.Customers.Find(id);
+            Customer customer = APIDbContext.Customers.Find(id);
             if (customer != null)
             {
-                ApplicationDbContext.Customers.Remove(customer);
-                ApplicationDbContext.SaveChanges();
+                APIDbContext.Customers.Remove(customer);
+                APIDbContext.SaveChanges();
             }
             return customer;
         }
 
         public Customer Get(int id)
         {
-            Customer customer = ApplicationDbContext.Customers.Find(id);
+            Customer customer = APIDbContext.Customers.Find(id);
             
             return customer;
         }
@@ -44,7 +44,7 @@ namespace Models.EntityRepository
         public Customer Get(string email, string password)
         {
             
-           Customer customer = ApplicationDbContext.Customers.
+           Customer customer = APIDbContext.Customers.
                     Where(b => (b.Email == email) && (b.Password==password))
                     .FirstOrDefault();
 
@@ -53,13 +53,13 @@ namespace Models.EntityRepository
 
         public List<Customer> GetAll()
         {
-            return ApplicationDbContext.Customers.ToList();
+            return APIDbContext.Customers.ToList();
         }
 
         public void Update(Customer customer)
         {
-            ApplicationDbContext.Customers.Update(customer);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Customers.Update(customer);
+            APIDbContext.SaveChanges();
         }
     }
 }

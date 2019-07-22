@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
 using Models.EntityRepository;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
@@ -15,15 +16,15 @@ namespace PizzaAPI.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly APIDbContext _context;
         private readonly IItemRepository itemRepository;
 
 
-        public ItemsController(ApplicationDbContext context, IItemRepository itemRepository)
+        public ItemsController(APIDbContext context, IItemRepository itemRepository)
         {
             _context = context;
             this.itemRepository = itemRepository;
-            this.itemRepository.ApplicationDbContext = context;
+            this.itemRepository.APIDbContext = context;
         }
 
         // GET: api/Items
@@ -51,7 +52,7 @@ namespace PizzaAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutItem(int id, Item item)
         {
-            if (id != item.ItemId)
+            if (id != item.ItemID)
             {
                 return BadRequest();
             }
@@ -81,7 +82,7 @@ namespace PizzaAPI.Controllers
         {
             itemRepository.Add(item);
 
-            return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
+            return CreatedAtAction("GetItem", new { id = item.ItemID }, item);
         }
 
         // DELETE: api/Items/5
@@ -101,7 +102,7 @@ namespace PizzaAPI.Controllers
 
         private bool ItemExists(int id)
         {
-            return _context.Items.Any(e => e.ItemId == id);
+            return _context.Items.Any(e => e.ItemID == id);
         }
     }
 }

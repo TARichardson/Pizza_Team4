@@ -10,40 +10,40 @@ namespace Models.EntityRepository
 {
     public class ItemRepository : IItemRepository
     {
-        public ApplicationDbContext ApplicationDbContext { set; get; }
+        public APIDbContext APIDbContext { set; get; }
 
-        public ItemRepository(ApplicationDbContext ApplicationDbContext)
+        public ItemRepository(APIDbContext APIDbContext)
         {
-            this.ApplicationDbContext = ApplicationDbContext;
+            this.APIDbContext = APIDbContext;
         }
 
         public void Add(Item item)
         {
-            ApplicationDbContext.Items.Add(item);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Items.Add(item);
+            APIDbContext.SaveChanges();
         }
         
         public Item Delete(int id)
         {
-            Item item = ApplicationDbContext.Items.Find(id);
+            Item item = APIDbContext.Items.Find(id);
             if (item != null)
             {
-                ApplicationDbContext.Items.Remove(item);
-                ApplicationDbContext.SaveChanges();
+                APIDbContext.Items.Remove(item);
+                APIDbContext.SaveChanges();
             }
             return item;
         }
 
         public Item Get(int id)
         {
-            Item item = ApplicationDbContext.Items.Find(id);
+            Item item = APIDbContext.Items.Find(id);
             
             return item;
         }
 
         public List<Item> GetAll()
         {
-            return ApplicationDbContext.Items.ToList();
+            return APIDbContext.Items.ToList();
         }
 
         public List<Item> GetAll(int orderId)
@@ -52,8 +52,8 @@ namespace Models.EntityRepository
         }
         public void Update(Item item)
         {
-            ApplicationDbContext.Items.Update(item);
-            ApplicationDbContext.SaveChanges();
+            APIDbContext.Items.Update(item);
+            APIDbContext.SaveChanges();
         }
     }
 }

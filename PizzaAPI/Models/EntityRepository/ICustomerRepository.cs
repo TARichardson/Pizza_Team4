@@ -10,7 +10,7 @@ namespace Models.EntityRepository
 {
     public interface ICustomerRepository
     {
-        ApplicationDbContext ApplicationDbContext { set; get; }
+        APIDbContext APIDbContext { set; get; }
         
         
         void Add(Customer customer);

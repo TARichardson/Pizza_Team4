@@ -10,7 +10,7 @@ namespace Models.EntityRepository
 {
     public interface IOrderRepository
     {
-        ApplicationDbContext ApplicationDbContext { set; get; }
+        APIDbContext APIDbContext { set; get; }
         
         void Add(Order order);
         Order Delete(int id);
