@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
-using Models.EntityRepository;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
@@ -79,7 +79,11 @@ namespace PizzaAPI.Controllers
         public ActionResult<Order> PostOrder(Order order)
         {
             orderRepository.Add(order);
+<<<<<<< HEAD
             return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
+=======
+            return CreatedAtAction("GetOrder", new { id = order.OrderID}, order);
+>>>>>>> da73dadb182d623da152ad728db1605f6fda09b9
         }
 
         // DELETE: api/Orders/5

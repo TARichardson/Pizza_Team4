@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
 
-namespace Models.EntityRepository
+namespace PizzaAPI.Models.EntityRepository
 {
     public class ItemRepository : IItemRepository
     {
@@ -48,7 +48,7 @@ namespace Models.EntityRepository
 
         public List<Item> GetAll(int orderId)
         {
-            return GetAll().Where(b=>b.OrderId==orderId).ToList();
+            return GetAll().Where(b=>b.ItemID==orderId).ToList();
         }
         public void Update(Item item)
         {

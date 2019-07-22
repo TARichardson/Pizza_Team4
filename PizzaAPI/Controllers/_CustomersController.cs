@@ -1,4 +1,4 @@
-﻿//using System;
+//using System;
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Threading.Tasks;
@@ -7,7 +7,7 @@
 //using Microsoft.EntityFrameworkCore;
 //using Entities;
 //using PizzaAPI.Models;
-//using Models.EntityRepository;
+//using PizzaAPI.Models.EntityRepository;
 
 //namespace PizzaAPI.Controllers
 //{
@@ -15,16 +15,15 @@
 //    [ApiController]
 //    public class CustomersController : ControllerBase
 //    {
-//        private readonly ApplicationDbContext _context;
+//        private readonly APIDbContext _context;
 //        private readonly ICustomerRepository customerRepository;
 
-//        public CustomersController(ApplicationDbContext context, ICustomerRepository customerRepository)
+//        public CustomersController(APIDbContext context, ICustomerRepository customerRepository)
 //        {
 //            _context = context;
 //            this.customerRepository = customerRepository;
-//            this.customerRepository.ApplicationDbContext = _context;
+//            this.customerRepository.APIDbContext = _context;
 //        }
-
 //        // GET: api/Customers
 //        [HttpGet]
 //        public ActionResult<IEnumerable<Customer>> GetCustomers()

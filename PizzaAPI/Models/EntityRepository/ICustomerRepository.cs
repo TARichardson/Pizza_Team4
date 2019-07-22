@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
 
-namespace Models.EntityRepository
+namespace PizzaAPI.Models.EntityRepository
 {
     public interface ICustomerRepository
     {

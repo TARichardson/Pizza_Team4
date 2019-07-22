@@ -36,6 +36,11 @@ namespace Entities
         [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters.")]
         public string Address { get; set; }
         #endregion
+        #region City
+        [DataType(DataType.Text)]
+        [StringLength(50, ErrorMessage = "City cannot be longer than 50 characters.")]
+        public string City { get; set; }
+        #endregion
         #region State
         [MaxLength(2), MinLength(2)]
         public string State { get; set; }
@@ -61,6 +66,7 @@ namespace Entities
             Email = dto.Email;
             Phone = dto.Phone;
             Address = dto.Address;
+            City = dto.City;
             State = dto.State;
             ZipCode = dto.ZipCode;
             Password = dto.Password;
@@ -73,6 +79,7 @@ namespace Entities
             c.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
             c.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
             c.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
+            c.City = (cR.City == null || cR.City == cL.City) ? cL.City : cR.City;
             c.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
             c.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
             c.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
@@ -80,13 +87,13 @@ namespace Entities
         }
         public static Customer operator +(Customer cL, CustomerDTO cR)
         {
-            //Customer c = new Customer();
             cL.CustomerID = cL.CustomerID;
             cL.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
             cL.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
             cL.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
             cL.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
             cL.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
+            cL.City = (cR.City == null || cR.City == cL.City) ? cL.City : cR.City;
             cL.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
             cL.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
             cL.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;

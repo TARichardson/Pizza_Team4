@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
-using Models.EntityRepository;
 using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
@@ -82,7 +81,8 @@ namespace PizzaAPI.Controllers
         {
             itemRepository.Add(item);
 
-            return CreatedAtAction("GetItem", new { id = item.ItemID }, item);
+
+            return CreatedAtAction("GetItem", new { id = item.ItemID}, item);
         }
 
         // DELETE: api/Items/5
