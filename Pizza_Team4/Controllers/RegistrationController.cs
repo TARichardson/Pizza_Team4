@@ -6,7 +6,7 @@ using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace PizzaUI.Controllers
+namespace Pizza_Team4.Controllers
 {
     public class RegistrationController : Controller
     {
@@ -23,7 +23,7 @@ namespace PizzaUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register([Bind("FirstName,LastName,Address,City,State,ZipCode,Phone,Email,Password")] Customer customer)
+        public IActionResult Register([Bind("FirstName,LastName,Address,City,State,ZipCode,Phone,Email,Password")] CustomerDTO customer)
         {
             if (ModelState.IsValid)
             {

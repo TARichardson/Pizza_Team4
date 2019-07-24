@@ -11,13 +11,15 @@ namespace PizzaAPI.Models.EntityRepository
     public interface ICustomerRepository
     {
         APIDbContext APIDbContext { set; get; }
-        
-        
-        void Add(Customer customer);
-        Customer Delete(int id);
-        void Update(Customer customer);
-        Customer Get(int id);
-        Customer Get(string email, string password);
-        List<Customer> GetAll();
+
+
+        Task<Customer> Add(Customer customer);
+        Task<Customer> Add(CustomerDTO customer);
+
+        Task<Customer> Delete(int id);
+        Task<Customer> Update(int id, CustomerDTO dto);
+        Task<Customer> Get(int id);
+        Task<Customer> Get(CustomerDTO dto);
+        Task<IEnumerable<Customer>> GetAll();
     }
 }

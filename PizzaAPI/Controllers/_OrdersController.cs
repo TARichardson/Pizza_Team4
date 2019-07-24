@@ -74,17 +74,17 @@
 //            return NoContent();
 //        }
 
+
 //        // POST: api/Orders
 //        [HttpPost]
 //        public ActionResult<Order> PostOrder(Order order)
 //        {
 //            orderRepository.Add(order);
-//<<<<<<< HEAD
+
 //            return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
-//=======
-//            return CreatedAtAction("GetOrder", new { id = order.OrderID}, order);
-//>>>>>>> da73dadb182d623da152ad728db1605f6fda09b9
+
 //        }
+
 
 //        // DELETE: api/Orders/5
 //        [HttpDelete("{id}")]
