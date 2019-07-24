@@ -7,18 +7,22 @@ using PizzaAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Entities;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomersController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private readonly ICustomerRepository _cr; 
 
-        public CustomerController(APIDbContext context)
+        public CustomersController(APIDbContext context, ICustomerRepository cr)
         {
             _context = context;
+            _cr = cr;
+            _cr.APIDbContext = context;
             if (_context.Customers.Count() == 0)
             {
                 _context.Customers.Add(
@@ -52,22 +56,31 @@ namespace PizzaAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return  Ok(await _context.Customers.ToListAsync<Customer>());
+            // error check for status needed
+            return Ok(await _cr.GetAll());
         }
         // GET api/Customers/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _context.Customers.FindAsync(id));
+            // error check for status needed
+            return Ok(await _cr.Get(id));
+        }
+        // GET api/Customers/
+        [Route("Profile")]
+        [HttpPost]
+        public async Task<IActionResult> GetProfile([FromBody] CustomerDTO dto)
+        {
+            // error check for status needed
+            return Ok(await _cr.Get(dto));
         }
 
         // POST api/Customers
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Customer customer)
+        public async Task<IActionResult> Post([FromBody] CustomerDTO dto)
         {
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
-            var result = await _context.Customers.FindAsync(_context.Customers.Count());
+            var result = await _cr.Add(dto);
+            // error check for status needed
             return CreatedAtAction(
                 nameof(Get),
                 result);
@@ -77,22 +90,16 @@ namespace PizzaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO dto)
         {
-            Customer customer = await _context.Customers.FindAsync(id);
-            //customer.CustomerID = id;
-            customer = customer + dto;
-            _context.Customers.Update(customer).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return Ok(customer);
-
-        }
+            // error check for status needed
+            Customer cus = await _cr.Update(id, dto);
+            return cus != null ? Ok(cus) : NotFound("record not founded.");
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Customer customer = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(customer);
-            await _context.SaveChangesAsync();
+            Customer customer = await _cr.Delete(id);
+            // error check for status needed
             return Ok(new KeyValuePair<string,Customer>("Customer delete", customer));
 
         }

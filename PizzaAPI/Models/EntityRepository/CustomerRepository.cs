@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PizzaAPI.Models.EntityRepository
 {
@@ -17,49 +19,66 @@ namespace PizzaAPI.Models.EntityRepository
             this.APIDbContext = APIDbContext;
         }
 
-        public void Add(Customer customer)
+        public async Task<Customer> Add(Customer customer)
         {
             APIDbContext.Customers.Add(customer);
-            APIDbContext.SaveChanges();
+            await APIDbContext.SaveChangesAsync();
+            var result = await APIDbContext.Customers.FindAsync(APIDbContext.Customers.Count());
+            return result;
         }
-        
-        public Customer Delete(int id)
+        public async Task<Customer> Add(CustomerDTO dto)
+        {   Customer customer = new Customer(dto);
+            APIDbContext.Customers.Add(customer);
+            await APIDbContext.SaveChangesAsync();
+            var result = await APIDbContext.Customers.FindAsync(APIDbContext.Customers.Count());
+            return result;
+        }
+        public async Task<Customer> Delete(int id)
         {
-            Customer customer = APIDbContext.Customers.Find(id);
+            Customer customer = await APIDbContext.Customers.FindAsync(id);
             if (customer != null)
             {
                 APIDbContext.Customers.Remove(customer);
-                APIDbContext.SaveChanges();
+                await APIDbContext.SaveChangesAsync();
             }
+            return  customer;
+        }
+
+        public async Task<Customer> Get(int id)
+        {
+            Customer customer = await APIDbContext.Customers.FindAsync(id);
             return customer;
         }
 
-        public Customer Get(int id)
+        public async Task<Customer> Get(CustomerDTO dto)
         {
-            Customer customer = APIDbContext.Customers.Find(id);
             
-            return customer;
-        }
-
-        public Customer Get(string email, string password)
-        {
-            
-           Customer customer = APIDbContext.Customers.
-                    Where(b => (b.Email == email) && (b.Password==password))
-                    .FirstOrDefault();
+           Customer customer = await APIDbContext.Customers
+                .Where(b => (b.Email == dto.Email) && (b.Password==dto.Password))
+                .FirstOrDefaultAsync();
 
             return customer;
         }
 
-        public List<Customer> GetAll()
+        public async Task<IEnumerable<Customer>> GetAll()
         {
-            return APIDbContext.Customers.ToList();
+            return await APIDbContext.Customers.ToListAsync();
         }
 
-        public void Update(Customer customer)
+        public async Task<Customer> Update(int id, CustomerDTO dto)
         {
-            APIDbContext.Customers.Update(customer);
-            APIDbContext.SaveChanges();
+            try
+            {
+                Customer customer = await APIDbContext.Customers.FindAsync(id);
+                customer += dto;
+                APIDbContext.Customers.Update(customer).State = EntityState.Modified;
+                await APIDbContext.SaveChangesAsync();
+                return customer;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
