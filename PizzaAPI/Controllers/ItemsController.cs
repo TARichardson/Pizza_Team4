@@ -23,11 +23,10 @@ namespace PizzaAPI.Controllers
 
         // GET: api/Items
         [HttpGet("{id}")]
-        [Route("Orders/{ID}")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems(int ID)
         {
 
-            return await _context.Items.Include("Order").Where(i => i.Order.OrderID == ID).ToListAsync();
+            return await _context.Items.Include("Order").Where(i => i.ItemID == ID).ToListAsync();
         }
 
         // GET: api/Items/5
@@ -77,12 +76,16 @@ namespace PizzaAPI.Controllers
         // POST: api/Items
 
         [HttpPost("{id}")]
-        public async Task<ActionResult<Item>> PostItem(Item item,int OrderID)
+        public async Task<ActionResult<Item>> AddItem(Item item,int OrderID)
         {
             var order = _context.Orders.Where(o => o.OrderID == OrderID).FirstOrDefault();
-            item.Order = order;
+            Item i = new Item();
+            i.Order = order;
+            i.qty = item.qty;
+            i.Amount = item.Amount;
             order.TotalAmount += (decimal)item.Amount;
-            _context.Items.Add(item);
+            _context.Orders.Update(order);
+            _context.Items.Add(i);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetItem", new { id = item.ItemID, OrderID= item.Order.OrderID}, item);
@@ -92,13 +95,15 @@ namespace PizzaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _context.Items.Include("Order").Where(i=>i.ItemID==id).FirstAsync();
             if (item == null)
             {
                 return NotFound();
             }
-
+            var order = _context.Orders.Where(o=>o.OrderID==item.Order.OrderID).FirstOrDefault();
+            order.TotalAmount = order.TotalAmount - item.Amount;
             _context.Items.Remove(item);
+            _context.Update(order);
             await _context.SaveChangesAsync();
 
             return item;
