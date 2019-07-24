@@ -92,8 +92,17 @@ namespace PizzaAPI.Controllers
         {
             // error check for status needed
             Customer cus = await _cr.Update(id, dto);
-            return cus != null ? Ok(cus) : NotFound("record not founded.");
-
+            IActionResult result;
+            if (cus != null)
+            {
+                result = Ok(cus);
+            }
+            else
+            {
+                result = NotFound("record not founded.");
+            }
+            return result;
+        }
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
