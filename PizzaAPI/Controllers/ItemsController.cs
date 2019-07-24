@@ -27,22 +27,22 @@ namespace PizzaAPI.Controllers
         public async Task<ActionResult<IEnumerable<Item>>> GetItems(int ID)
         {
 
-            return await _context.Items.Where(i => i.Order.OrderID == ID).ToListAsync();
+            return await _context.Items.Include("Order").Where(i => i.Order.OrderID == ID).ToListAsync();
         }
 
         // GET: api/Items/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItem(int id)
-        {
-            var item = await _context.Items.FindAsync(id);
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Item>> GetItem(int id)
+        //{
+        //    var item = await _context.Items.FindAsync(id);
 
-            if (item == null)
-            {
-                return NotFound();
-            }
+        //    if (item == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return item;
-        }
+        //    return item;
+        //}
 
         // PUT: api/Items/5
         [HttpPut("{id}")]
@@ -75,7 +75,8 @@ namespace PizzaAPI.Controllers
         }
 
         // POST: api/Items
-        [HttpPost]
+
+        [HttpPost("{id}")]
         public async Task<ActionResult<Item>> PostItem(Item item,int OrderID)
         {
             var order = _context.Orders.Where(o => o.OrderID == OrderID).FirstOrDefault();

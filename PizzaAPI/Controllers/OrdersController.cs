@@ -21,6 +21,11 @@ namespace PizzaAPI.Controllers
             _context = context;
            
         }
+        //[HttpGet]
+        //public async Task<IEnumerable<Order>> Get()
+        //{
+        //    return await _context.Orders.Include("Customer").ToListAsync<Order>();
+        //}
 
         // GET: api/Orders
         //[HttpGet]
@@ -29,30 +34,30 @@ namespace PizzaAPI.Controllers
         //    return await _context.Orders.ToListAsync();
         //}
 
-        // GET: api/Orders/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
-        {
-            var order = await _context.Orders.Where(o => o.OrderID == id ).FirstOrDefaultAsync();
+        //// GET: api/Orders/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Order>> GetOrder(int id)
+        //{
+        //    var order = await _context.Orders.Include("Customer").Where(o => o.OrderID == id ).FirstOrDefaultAsync();
 
-            if (order == null)
-            {
-                order = new Order()
-                {
-                    Pay = false,
-                    TotalAmount = 0,
-                    Customer = _context.Customers.Find(id)
-                };
-                _context.Orders.Add(order);
-            }
-            return order;
-        }
+        //    if (order == null)
+        //    {
+        //        order = new Order()
+        //        {
+        //            Pay = false,
+        //            TotalAmount = 0,
+        //            Customer = _context.Customers.Find(id)
+        //        };
+        //        _context.Orders.Add(order);
+        //    }
+        //    return order;
+        //}
         // GET: api/Orders/5
-        [HttpGet("{id}")]
+        [HttpGet("CustomerCart/{id}")]
         [Route("CustomerCart/{Id}")]
         public async Task<ActionResult<Order>> GetCart(int id)
         {
-            var order = await _context.Orders.Where(s => s.Customer.CustomerID == id && s.Pay == false).FirstOrDefaultAsync();
+            var order = await _context.Orders.Include("Customer").Where(s => s.Customer.CustomerID == id && s.Pay == false).FirstOrDefaultAsync();
 
             if (order == null)
             {
@@ -61,13 +66,17 @@ namespace PizzaAPI.Controllers
                     Pay = false,
                     TotalAmount = 0,
                     Customer = _context.Customers.Find(id)
-                };
+              
+            };
                 _context.Orders.Add(order);
-            }
+                await _context.SaveChangesAsync();
+              
+        }
             return order;
         }
         // PUT: api/Orders/5
         [HttpPut("{id}")]
+        [Route("AddCart/{Id}")]
         //public async Task<IActionResult> PutOrder(int id, Order order)
         //{
         //    if (id != order.OrderID)
@@ -96,36 +105,40 @@ namespace PizzaAPI.Controllers
 
 
         // DELETE: api/Orders/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Order>> DeleteOrder(int id)
-        {
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
+        [HttpDelete("Delet/{id}")]
+        //public async Task<ActionResult<Order>> DeleteOrder(int id)
+        //{
+        //    var order = await _context.Orders.FindAsync(id);
+        //    if (order == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
+        //    _context.Orders.Remove(order);
+        //    await _context.SaveChangesAsync();
 
-            return order;
-        }
+        //    return order;
+        //}
 
         //private bool OrderExists(int id)
         //{
         //    return _context.Orders.Any(e => e.OrderID == id);
         //}
-        [HttpGet("{id}")]
+        [HttpGet("History/{id}")]
         [Route("History/{Id}")]
         public List<Order> History(int Id)
         {
-            return _context.Orders.Where(b => b.Customer.CustomerID == Id &&b.Pay==true).ToList();
+            var qu = _context.Orders.Where(b => b.Customer.CustomerID == Id && b.Pay == true).ToList();
+            return qu;
         }
-        [HttpGet("{id}")]
+        [HttpGet("Transation/{id}")]
         [Route("Transation/{Id}")]
-        public void Transationsumbit(int? Id)
+        public List<Item> Transationsumbit(int Id)
         {
-           // Order.Where
+            var transaction = _context.Items.Include("Order").Where(s => s.Order.OrderID == Id).ToList();
+            var TotalAmount = transaction[0].Order.TotalAmount;
+            return transaction;
+           
         }
         
     }
