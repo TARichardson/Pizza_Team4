@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Safari Pizza</title>
+
+    <link rel="shortcut icon" href="resources/imgs/favicon.png" type="image/x-icon">
+
+    <!-- CSS - Custom fonts -->
+    <link href="resources/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Playball" rel="stylesheet" type="text/css">
+
+    <!-- CSS - jQuery DataTables -->
+    <link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- CSS - Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~/resources/libraries/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/resources/libraries/css/freelancer.css" />
+    <link rel="stylesheet" type="text/css" href="~/resources/libraries/css/half-slider.css" />
+
+    <!-- CSS - Custom -->
+    <link rel="stylesheet" type="text/css" href="~/resources/styles/custom.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="padding-top:5px; padding-bottom:5px; font-size:25px; font-family: playball">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav text-capitalize">
+                <li><a asp-controller="MainMenu" asp-action="Index">Welcome</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Pizza">Pizza</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Stromboli">Stromboli</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Calzone">Calzone</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Sides">Sides</a></li>
+                <li><a asp-controller="MainMenu" asp-action="Drinks">Drinks</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right text-capitalize">
+                <li><a asp-controller="Login" asp-action="Login"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - Safari Pizza
+        </div>
+    </footer>
+
+    
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

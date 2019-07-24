@@ -1,23 +1,25 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace Entities
 {
     public class Product
     {
-        [Key]
-        public int ProductID { set; get; }
-        [DisplayName("Name")]
-        [DataType(DataType.Text)]
-        public string Productname { set; get; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { set; get; }
-        [ForeignKey("CategoryID")]
+        [ForeignKey("Category")]
+        public virtual int CategoryId { set; get; }
+
         public Category Category { set; get; }
+
+        [Key]
+        public int ProductId { set; get; }
+
+        [Required]
+        public double Price { set; get; }
+
+        [Required]
+        public string Name { set; get; }
     }
 }

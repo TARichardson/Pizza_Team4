@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Pizza_Team4.Models;
 
-namespace Pizza_Team4.Controllers
+namespace PizzaUI.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,7 +15,27 @@ namespace Pizza_Team4.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Pizza()
+        {
+            return View();
+        }
+
+        public IActionResult Stromboli()
+        {
+            return View();
+        }
+
+        public IActionResult Calzone()
+        {
+            return View();
+        }
+
+        public IActionResult Sides()
+        {
+            return View();
+        }
+
+        public IActionResult Drinks()
         {
             return View();
         }

@@ -26,7 +26,7 @@ namespace PizzaAPI.Controllers
                     {
                         FirstName = "Troy",
                         Email = "a@a.com",
-                        Password = "pass"
+                        Password = "passpass"
                     }
                     );
                 _context.Customers.Add(
@@ -34,7 +34,7 @@ namespace PizzaAPI.Controllers
                     {
                         FirstName = "Rob",
                         Email = "r@a.com",
-                        Password = "pass"
+                        Password = "passpass"
                     }
                     );
                 _context.Customers.Add(
@@ -42,45 +42,59 @@ namespace PizzaAPI.Controllers
                      {
                          FirstName = "Tom",
                          Email = "t@a.com",
-                         Password = "pass"
+                         Password = "passpass"
                      }
                      );
                 _context.SaveChanges();
             }
         }
-        // GET api/Customer
+        // GET api/Customers
         [HttpGet]
-        public async Task<IEnumerable<Customer>> Get()
+        public async Task<IActionResult> Get()
         {
-            return await _context.Customers.ToListAsync<Customer>();
+            return  Ok(await _context.Customers.ToListAsync<Customer>());
         }
-
-        // GET api/Customer/5
+        // GET api/Customers/5
         [HttpGet("{id}")]
-        public async Task<Customer> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return await _context.Customers.FindAsync(id);
+            return Ok(await _context.Customers.FindAsync(id));
         }
 
-        // POST api/values
+        // POST api/Customers
         [HttpPost]
-        public async void Post([FromBody] Customer value)
+        public async Task<IActionResult> Post([FromBody] Customer customer)
         {
-                _context.Customers.Add(value);
-                await _context.SaveChangesAsync();
+            _context.Customers.Add(customer);
+            await _context.SaveChangesAsync();
+            var result = await _context.Customers.FindAsync(_context.Customers.Count());
+            return CreatedAtAction(
+                nameof(Get),
+                result);
         }
 
-        // PUT api/values/5
+        // PUT api/Customers/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO dto)
         {
+            Customer customer = await _context.Customers.FindAsync(id);
+            //customer.CustomerID = id;
+            customer = customer + dto;
+            _context.Customers.Update(customer).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return Ok(customer);
+
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
-
+        public async Task<IActionResult> Delete(int id)
         {
+            Customer customer = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customer);
+            await _context.SaveChangesAsync();
+            return Ok(new KeyValuePair<string,Customer>("Customer delete", customer));
+
         }
     }
 }
