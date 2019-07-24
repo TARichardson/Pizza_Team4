@@ -19,10 +19,12 @@ namespace PizzaAPI.Controllers
 
         private readonly IOrderRepository _cr;
 
-        public OrdersController(APIDbContext context)
+        public OrdersController(APIDbContext context,IOrderRepository cr)          
         {
             _context = context;
-           
+            _cr = cr;
+            _cr.APIDbContext = context;
+
         }
         //[HttpGet]
         //public async Task<IEnumerable<Order>> Get()
@@ -114,18 +116,15 @@ namespace PizzaAPI.Controllers
         //}
         [HttpGet("History/{id}")]
         [Route("History/{Id}")]
-        public List<Order> History(int Id)
+        public async Task<IActionResult> History(int Id)
         {
-            var qu = _context.Orders.Where(b => b.Customer.CustomerID == Id && b.Pay == true).ToList();
-            return qu;
+            return Ok(await _cr.GetHistory(Id));
         }
         [HttpGet("Transation/{id}")]
         [Route("Transation/{Id}")]
-        public List<Item> Transationsumbit(int Id)
+        public async Task<IActionResult> Transationsumbit(int Id)
         {
-            var transaction = _context.Items.Include("Order").Where(s => s.Order.OrderID == Id).ToList();
-            var TotalAmount = transaction[0].Order.TotalAmount;
-            return transaction;
+            return Ok(await _cr.Transationsumbit(Id));
            
         }
         

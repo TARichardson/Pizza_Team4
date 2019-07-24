@@ -57,15 +57,15 @@ namespace PizzaAPI.Models.EntityRepository
         }
 
 
-        public List<Order> GetHistory(int customerId)
+        public async Task<List<Order>> GetHistory(int customerId)
         {
-            var qu = APIDbContext.Orders.Where(b => b.Customer.CustomerID == customerId && b.Pay == true).ToList();
+            var qu = await APIDbContext.Orders.Where(b => b.Customer.CustomerID == customerId && b.Pay == true).ToListAsync();
             return qu;
         }
-        public List<Item> Transationsumbit(int Id)
+        public async Task<List<Item>> Transationsumbit(int Id)
         {
-            var transaction = APIDbContext.Items.Include("Order").Where(s => s.Order.OrderID == Id).ToList();
-            var TotalAmount = transaction[0].Order.TotalAmount;
+            var transaction = await APIDbContext.Items.Include("Order").Where(s => s.Order.OrderID == Id).ToListAsync();
+            //var TotalAmount = transaction[0].Order.TotalAmount;
             return transaction;
 
 

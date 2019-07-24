@@ -16,8 +16,8 @@ namespace PizzaAPI.Models.EntityRepository
  //       Order Delete(int id);
  //       void Update(Order order);
         Task<Order> GetOrder(int id);
- //       List<Order> GetAll();
-        List<Order> GetHistory(int customerId);
-        List<Item> Transationsumbit(int Id);
+        //       List<Order> GetAll();
+        Task<List<Order>> GetHistory(int customerId);
+        Task<List<Item>> Transationsumbit(int Id);
     }
 }

@@ -18,7 +18,7 @@ namespace PizzaAPI.Models.EntityRepository
             this.APIDbContext = APIDbContext;
         }
 
-        public void Add(Item item,int OrderID)
+        public async Task<Item> Add(Item item, int OrderID)
         {
             var order = APIDbContext.Orders.Where(o => o.OrderID == OrderID).FirstOrDefault();
             Item i = new Item();
@@ -28,21 +28,23 @@ namespace PizzaAPI.Models.EntityRepository
             order.TotalAmount += (decimal)item.Amount;
             APIDbContext.Orders.Update(order);
             APIDbContext.Items.Add(i);
-            APIDbContext.SaveChangesAsync();
+            await APIDbContext.SaveChangesAsync();
+            return i;
+           
         }
         
-        public Item Delete(int id)
+        public async Task<Item> Delete(int id)
         {
             var item = APIDbContext.Items.Include("Order").Where(i => i.ItemID == id).First();
             if (item == null)
             {
                 return null;
             }
-            var order = APIDbContext.Orders.Where(o => o.OrderID == item.Order.OrderID).FirstOrDefault();
+            var order = await APIDbContext.Orders.Where(o => o.OrderID == item.Order.OrderID).FirstOrDefaultAsync();
             order.TotalAmount = order.TotalAmount - item.Amount;
             APIDbContext.Items.Remove(item);
             APIDbContext.Update(order);
-            APIDbContext.SaveChanges();
+            await APIDbContext.SaveChangesAsync();
             return item;
          
         }
@@ -59,14 +61,16 @@ namespace PizzaAPI.Models.EntityRepository
             return APIDbContext.Items.ToList();
         }
 
-        public List<Item> GetAll(int orderId)
+        public async Task<List<Item>> GetAll(int orderId)
         {
-            return APIDbContext.Items.Include("Order").Where(i => i.Order.OrderID == orderId).ToList();
+            var order = await APIDbContext.Items.Include("Order").Where(i => i.Order.OrderID == orderId).ToListAsync();
+            return order;
         }
-        public void Update(Item item)
+        public async Task<Item> Update(Item item)
         {
             APIDbContext.Items.Update(item);
-            APIDbContext.SaveChanges();
+           await APIDbContext.SaveChangesAsync();
+            return item;
         }
     }
 }

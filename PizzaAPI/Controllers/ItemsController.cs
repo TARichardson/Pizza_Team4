@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
@@ -15,10 +16,14 @@ namespace PizzaAPI.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private readonly IItemRepository _cr;
 
-        public ItemsController(APIDbContext context)
+        public ItemsController(APIDbContext context,IItemRepository cr)
         {
             _context = context;
+            _cr = cr;
+            _cr.APIDbContext = context;
+
         }
 
         // GET: api/Items
@@ -26,7 +31,7 @@ namespace PizzaAPI.Controllers
         public async Task<ActionResult<IEnumerable<Item>>> GetItems(int ID)
         {
 
-            return await _context.Items.Include("Order").Where(i => i.ItemID == ID).ToListAsync();
+            return Ok(await _cr.GetAll(ID));
         }
 
         // GET: api/Items/5
@@ -78,17 +83,7 @@ namespace PizzaAPI.Controllers
         [HttpPost("{id}")]
         public async Task<ActionResult<Item>> AddItem(Item item,int OrderID)
         {
-            var order = _context.Orders.Where(o => o.OrderID == OrderID).FirstOrDefault();
-            Item i = new Item();
-            i.Order = order;
-            i.qty = item.qty;
-            i.Amount = item.Amount;
-            order.TotalAmount += (decimal)item.Amount;
-            _context.Orders.Update(order);
-            _context.Items.Add(i);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetItem", new { id = item.ItemID, OrderID= item.Order.OrderID}, item);
+            return Ok(await _cr.Add(item,OrderID));
         }
 
         // DELETE: api/Items/5
@@ -100,13 +95,7 @@ namespace PizzaAPI.Controllers
             {
                 return NotFound();
             }
-            var order = _context.Orders.Where(o=>o.OrderID==item.Order.OrderID).FirstOrDefault();
-            order.TotalAmount = order.TotalAmount - item.Amount;
-            _context.Items.Remove(item);
-            _context.Update(order);
-            await _context.SaveChangesAsync();
-
-            return item;
+            return Ok(await _cr.Delete(id));
         }
 
         private bool ItemExists(int id)
