@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using PizzaAPI.Models;
 
 namespace PizzaAPI.Models.EntityRepository
@@ -17,44 +18,58 @@ namespace PizzaAPI.Models.EntityRepository
             this.APIDbContext = APIDbContext;
         }
 
-        public void Add(Order order)
+        //public void Add(Order order)
+        //{
+        //    APIDbContext.Orders.Add(order);
+        //    APIDbContext.SaveChanges();
+        //}
+
+        //public Order Delete(int id)
+        //{
+        //    Order order = APIDbContext.Orders.Find(id);
+        //    if (order != null)
+        //    {
+        //        APIDbContext.Orders.Remove(order);
+        //        APIDbContext.SaveChanges();
+        //    }
+        //    return order;
+        //}
+
+        public async Task<Order> GetOrder(int id)
         {
-            APIDbContext.Orders.Add(order);
-            APIDbContext.SaveChanges();
-        }
-        
-        public Order Delete(int id)
-        {
-            Order order = APIDbContext.Orders.Find(id);
-            if (order != null)
+
+            var order = await APIDbContext.Orders.Include("Customer").Where(s => s.Customer.CustomerID == id && s.Pay == false).FirstOrDefaultAsync();
+
+            if (order == null)
             {
-                APIDbContext.Orders.Remove(order);
-                APIDbContext.SaveChanges();
+                order = new Order()
+                {
+                    Pay = false,
+                    TotalAmount = 0,
+                    Customer = await APIDbContext.Customers.FindAsync(id)
+
+                };
+                APIDbContext.Orders.Add(order);
+                await APIDbContext.SaveChangesAsync();
+
             }
             return order;
         }
 
-        public Order Get(int id)
-        {
-            Order order = APIDbContext.Orders.Find(id);
-            
-            return order;
-        }
 
-        public List<Order> GetAll()
+        public List<Order> GetHistory(int customerId)
         {
-            return APIDbContext.Orders.ToList();
+            var qu = APIDbContext.Orders.Where(b => b.Customer.CustomerID == customerId && b.Pay == true).ToList();
+            return qu;
         }
-
-        public List<Order> GetAll(int customerId)
+        public List<Item> Transationsumbit(int Id)
         {
+            var transaction = APIDbContext.Items.Include("Order").Where(s => s.Order.OrderID == Id).ToList();
+            var TotalAmount = transaction[0].Order.TotalAmount;
+            return transaction;
 
-            return GetAll().Where(b=>b.Customer.CustomerID == customerId).ToList();
-        }
-        public void Update(Order order)
-        {
-            APIDbContext.Orders.Update(order);
-            APIDbContext.SaveChanges();
+
         }
     }
 }
+

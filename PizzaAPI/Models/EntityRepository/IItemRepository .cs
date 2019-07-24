@@ -12,10 +12,10 @@ namespace PizzaAPI.Models.EntityRepository
     {
         APIDbContext APIDbContext { set; get; }
         
-        void Add(Item item);
+        void Add(Item item,int OrderId);
         Item Delete(int id);
         void Update(Item item);
-        Item Get(int id);
+     //   Item Get(int id);
         List<Item> GetAll();
         List<Item> GetAll(int orderId);
     }

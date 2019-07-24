@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
+using PizzaAPI.Models.EntityRepository;
 
 namespace PizzaAPI.Controllers
 {
@@ -15,6 +16,8 @@ namespace PizzaAPI.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly APIDbContext _context;
+
+        private readonly IOrderRepository _cr;
 
         public OrdersController(APIDbContext context)
         {
@@ -55,24 +58,9 @@ namespace PizzaAPI.Controllers
         // GET: api/Orders/5
         [HttpGet("CustomerCart/{id}")]
         [Route("CustomerCart/{Id}")]
-        public async Task<ActionResult<Order>> GetCart(int id)
+        public async Task<IActionResult> GetCart(int id)
         {
-            var order = await _context.Orders.Include("Customer").Where(s => s.Customer.CustomerID == id && s.Pay == false).FirstOrDefaultAsync();
-
-            if (order == null)
-            {
-                order = new Order()
-                {
-                    Pay = false,
-                    TotalAmount = 0,
-                    Customer = _context.Customers.Find(id)
-              
-            };
-                _context.Orders.Add(order);
-                await _context.SaveChangesAsync();
-              
-        }
-            return order;
+            return  Ok(await _cr.GetOrder(id));
         }
         // PUT: api/Orders/5
         [HttpPut("{id}")]
