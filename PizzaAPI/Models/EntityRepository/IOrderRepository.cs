@@ -18,6 +18,8 @@ namespace PizzaAPI.Models.EntityRepository
         Task<Order> GetOrder(int id);
         //       List<Order> GetAll();
         Task<List<Order>> GetHistory(int customerId);
-        Task<List<Item>> Transationsumbit(int Id);
+        Task<List<Item>> Transation(int Id);
+        Task<Order> Transationsumbit(int Id);
+        Task<List<Payment>> Payment(int Id);
     }
 }

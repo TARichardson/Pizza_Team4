@@ -23,7 +23,17 @@ namespace PizzaAPI.Controllers
             _context = context;
             _cr = cr;
             _cr.APIDbContext = context;
-
+            //Order order = _context.Orders.Where(s => s.OrderID == 3).FirstOrDefault();
+            //_context.Items.Add(
+            //      new Item
+            //      {
+            //          Amount = 10,
+            //          Order = order,
+            //          qty = 1,
+            //          Product=null
+            //      }
+            //      ) ;
+            _context.SaveChanges();
         }
 
         // GET: api/Items
@@ -87,10 +97,11 @@ namespace PizzaAPI.Controllers
         }
 
         // DELETE: api/Items/5
+        
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Item>> DeleteItem(int id)
+        public async Task<ActionResult<Item>> Delete(int id)
         {
-            var item = await _context.Items.Include("Order").Where(i=>i.ItemID==id).FirstAsync();
+            var item = await _context.Items.Where(i=>i.ItemID==id).FirstAsync();
             if (item == null)
             {
                 return NotFound();

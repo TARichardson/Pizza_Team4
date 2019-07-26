@@ -122,11 +122,22 @@ namespace PizzaAPI.Controllers
         }
         [HttpGet("Transation/{id}")]
         [Route("Transation/{Id}")]
+        public async Task<IActionResult> Transation(int Id)
+        {
+            return Ok(await _cr.Transation(Id));
+        }
+        [HttpGet("Transationsumbit/{id}")]
+        [Route("Transationsumbit/{Id}")]
         public async Task<IActionResult> Transationsumbit(int Id)
         {
-            return Ok(await _cr.Transationsumbit(Id));
-           
+            return Ok(await _cr.Transationsumbit(Id));           
         }
-        
+        [HttpGet("Payment/{Id}")]
+        public async Task<IActionResult>Paymen(int Id)
+        {
+            return Ok(await _cr.Payment(Id));
+        }
+
+
     }
 }

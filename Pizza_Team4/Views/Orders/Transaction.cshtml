@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Entities.Item>
+
+@{
+    Layout = "~/Views/Shared/_LayoutOrderMenu.cshtml";
+    if (Model.ToList().Count > 0)
+    {
+        ViewData["amount"] = Model.ToList()[0].Order.TotalAmount;
+    }
+    else
+    {
+        ViewData["amount"] = 0;
+    }
+}
+
+<h1>Transaction</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+           
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+@{
+    if (Model.ToList().Count > 0)
+    {
+        @Html.ActionLink("Sumbit to Pay", "payment", new { id = Model.ToList()[0].Order.OrderID })
+    }
+    else
+    {
+
+    }
+
+}
+
+
