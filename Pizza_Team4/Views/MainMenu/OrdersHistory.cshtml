@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Entities.Order>
+@{
+    ViewData["Title"] = "Orders History";
+    Layout = "~/Views/Shared/_LayoutOrderMenu.cshtml";
+}
+
+    <div class="container" style="padding-top: 8%; padding-bottom: 5%; ">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pay)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var amount = "$" + String.Format("{0:n}", item.TotalAmount);
+                    var time = item.DateCreated.ToString("F");
+                    <tr>
+                        <td style="border: 1px solid black;">
+                            @Html.DisplayFor(modelItem => time)
+                        </td>
+                        <td style="border: 1px solid black;color:green">
+                            @Html.DisplayFor(modelItem => amount)
+                        </td>
+                        <td style="border: 1px solid black;">
+                            @Html.DisplayFor(modelItem => item.Pay)
+
+                        <td style="border: 1px solid black;">
+                            <a style="color:blue" asp-action="Deposit" asp-route-id="@item.OrderId">Order Details</a> |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+

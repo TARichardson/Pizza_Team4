@@ -1,104 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-//using System.Web.Mvc;
 
 namespace Entities
 {
-    public class Customer : ICustomer
+    public class Customer
     {
         [Key]
         public int CustomerID { get; set; }
-        #region FirstName
+
+        [Required]
         [DisplayName("First Name")]
-        [DataType(DataType.Text)]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string FirstName { get; set; }
-        #endregion
-        #region LastName
+
+        [Required]
         [DisplayName("Last Name")]
-        [DataType(DataType.Text)]
         [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
         public string LastName { get; set; }
-        #endregion
-        #region Email Address
-        [Required(ErrorMessage = "Please enter a Email")]
-        [DataType(DataType.EmailAddress)]
+
+        [Required]
         public string Email { get; set; }
-        #endregion
-        #region Phone Number
-        [MaxLength(10), MinLength(10)]
+
+        [Required]
+        [MaxLength(11), MinLength(10)]
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-        #endregion
-        #region Address
-        [DataType(DataType.Text)]
-        [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters.")]
+        [Required]
         public string Address { get; set; }
-        #endregion
-        #region City
-        [DataType(DataType.Text)]
-        [StringLength(50, ErrorMessage = "City cannot be longer than 50 characters.")]
+
+        [Required]
         public string City { get; set; }
-        #endregion
-        #region State
-        [MaxLength(2), MinLength(2)]
+
+        [Required]
         public string State { get; set; }
-        #endregion
-        #region Zip Code
+
         [DisplayName("Zip Code")]
-        [MaxLength(5), MinLength(5)]
         [DataType(DataType.PostalCode)]
-        public string ZipCode { get; set; }
-        #endregion
-        #region Password
-        [Required(ErrorMessage = "Please Password"), MaxLength(20), MinLength(8)]
+        public int ZipCode { get; set; }
+
+        [Required(ErrorMessage = "Please Password"), MaxLength(20), MinLength(6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        #endregion
-
-        public Customer() { }
-
-        public Customer(CustomerDTO dto)
-        {
-            FirstName = dto.FirstName;
-            LastName = dto.LastName;
-            Email = dto.Email;
-            Phone = dto.Phone;
-            Address = dto.Address;
-            City = dto.City;
-            State = dto.State;
-            ZipCode = dto.ZipCode;
-            Password = dto.Password;
-        }
-        public static Customer operator +(Customer cL, Customer cR)
-        {
-            Customer c = new Customer();
-            c.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
-            c.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
-            c.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
-            c.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
-            c.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
-            c.City = (cR.City == null || cR.City == cL.City) ? cL.City : cR.City;
-            c.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
-            c.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
-            c.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
-            return c;
-        }
-        public static Customer operator +(Customer cL, CustomerDTO cR)
-        {
-            cL.CustomerID = cL.CustomerID;
-            cL.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
-            cL.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
-            cL.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
-            cL.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
-            cL.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
-            cL.City = (cR.City == null || cR.City == cL.City) ? cL.City : cR.City;
-            cL.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
-            cL.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
-            cL.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
-            return cL;
-        }
+        [DisplayName("Registration Date")]
+        public DateTime DateCreated { set; get; }
+        public virtual List<Order> OrdersList { set; get; }
+        public virtual List<Payment> PaymentList { set; get; }
     }
 }
-

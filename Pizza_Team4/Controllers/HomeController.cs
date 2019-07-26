@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Pizza_Team4.Models;
 
-namespace PizzaUI.Controllers
+namespace Pizza_Team4.Controllers
 {
     public class HomeController : Controller
     {

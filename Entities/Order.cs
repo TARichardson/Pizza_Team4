@@ -1,25 +1,26 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
+
 namespace Entities
 {
     public class Order
     {
-        [ForeignKey("CustomerID")]
-        public Customer Customer { set; get; }
+        [ForeignKey("Customer")]
+        public virtual int CustomerId { set; get; }
+        public virtual Customer Customer { set; get; }
+
         [Key]
-        public int OrderID { set; get; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal TotalAmount { set; get; }
-        [DataType(DataType.Text)]
-        public string ItemList { set; get; }
-        [DisplayName("Status")]
+        public int OrderId { set; get; }
+
+        public int TotalAmount { set; get; }
+
         public bool Pay { set; get; }
 
-        
+        public DateTime DateCreated { set; get; }
+
+        public virtual List<Item> ItemList { set; get; }
     }
 }

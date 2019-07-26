@@ -5,10 +5,81 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="Views\Home\Calzone.cshtml" />
+    <None Include="Views\Home\Drinks.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Pizza.cshtml" />
+    <None Include="Views\Home\Sides.cshtml" />
+    <None Include="Views\Home\Stromboli.cshtml" />
+    <None Include="Views\Login\Login.cshtml" />
+    <None Include="Views\Login\OrderMenu.cshtml" />
+    <None Include="Views\MainMenu\Calzone.cshtml" />
+    <None Include="Views\MainMenu\Drinks.cshtml" />
+    <None Include="Views\MainMenu\Index.cshtml" />
+    <None Include="Views\MainMenu\Pizza.cshtml" />
+    <None Include="Views\MainMenu\Sides.cshtml" />
+    <None Include="Views\MainMenu\Stromboli.cshtml" />
+    <None Include="Views\Registration\Register.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_CookieConsentPartial.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LayoutOrderMenu.cshtml" />
+    <None Include="Views\Shared\_LayoutWelcome.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\resources\libraries\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\bordered-pulled.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\core.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\fixed-width.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\font-awesome.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\icons.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\larger.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\list.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\mixins.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\path.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\rotated-flipped.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\spinning.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\stacked.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\less\variables.less" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\font-awesome.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_core.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_fixed-width.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_icons.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_larger.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_list.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_mixins.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_path.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_spinning.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_stacked.scss" />
+    <None Include="wwwroot\resources\libraries\font-awesome\scss\_variables.scss" />
+    <None Include="wwwroot\resources\libraries\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\resources\libraries\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\resources\libraries\js\bootstrap.js" />
+    <None Include="wwwroot\resources\libraries\js\bootstrap.min.js" />
+    <None Include="wwwroot\resources\libraries\js\cbpAnimatedHeader.js" />
+    <None Include="wwwroot\resources\libraries\js\cbpAnimatedHeader.min.js" />
+    <None Include="wwwroot\resources\libraries\js\classie.js" />
+    <None Include="wwwroot\resources\libraries\js\freelancer.js" />
+    <None Include="wwwroot\resources\libraries\js\jqBootstrapValidation.js" />
+    <None Include="wwwroot\resources\libraries\js\jquery.js" />
+    <None Include="wwwroot\resources\libraries\less\freelancer.less" />
+    <None Include="wwwroot\resources\libraries\less\mixins.less" />
+    <None Include="wwwroot\resources\libraries\less\variables.less" />
+    <None Include="wwwroot\resources\scripts\custom.js" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 

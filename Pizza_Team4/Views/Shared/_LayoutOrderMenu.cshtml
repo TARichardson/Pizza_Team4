@@ -26,8 +26,9 @@
     <!-- CSS - Custom -->
     <link rel="stylesheet" type="text/css" href="~/resources/styles/custom.css" />
 
+
 </head>
-<body>
+<body style="background-color:white">
     <nav class="navbar navbar-default navbar-fixed-top" style="padding-top:5px; padding-bottom:5px; font-size:25px; font-family: playball">
         <div class="container-fluid">
             <ul class="nav navbar-nav text-capitalize">
@@ -52,8 +53,11 @@
         </div>
     </footer>
 
-    
-
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <script src="~/resources/scripts/custom.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
