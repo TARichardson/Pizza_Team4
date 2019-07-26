@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using PizzaAPI.Models.EntityRepository;
 
 using PizzaAPI.Models;
+using System.IO;
 
 namespace PizzaAPI
 {
@@ -38,23 +39,37 @@ namespace PizzaAPI
             services.AddTransient<IItemRepository, ItemRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            //if (env.IsDevelopment())
+            //    {
+            //        app.UseDeveloperExceptionPage();
+            //    }
+            //    else
+            //    {
+            //        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //        app.UseHsts();
+            //    }
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            //    app.UseHttpsRedirection();
+            //    app.UseMvc();
+            app.Use(async (context, next) => {
+                await next();
+                if (context.Response.StatusCode == 404 &&
+                   !Path.HasExtension(context.Request.Path.Value) &&
+                   !context.Request.Path.Value.StartsWith("/api/"))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
+            app.UseMvcWithDefaultRoute();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
