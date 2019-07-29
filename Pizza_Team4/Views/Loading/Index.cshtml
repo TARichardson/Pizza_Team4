@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Loading";
+
+        Layout = "~/Views/Shared/_LayoutOrderMenu.cshtml";
+   }
+
+
+    <h1>Loading</h1>
+
+    @section scripts {
+        @*<script src="~/../../Scripts/.js"></script>*@
+        <script>
+            if (@ViewBag.CustomerID != -1) {
+                // save ID in localSorage
+                localStorage.setItem('CustomerID', @ViewBag.CustomerID);
+            }
+            window.location.href = `@ViewBag.toProfile` == 'false'
+                ? window.location.origin
+                : window.location.origin + "/profile";
+        </script>
+    }

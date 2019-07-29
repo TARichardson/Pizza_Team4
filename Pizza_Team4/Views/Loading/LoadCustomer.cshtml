@@ -1,0 +1,111 @@
+﻿@model Entities.Customer
+
+@{
+    ViewData["Title"] = "LoadCustomer";
+    Layout = "~/Views/Shared/_LayoutOrderMenu.cshtml";
+
+}
+
+
+<div class="container" style=" padding-top:8%; width:30%;">
+    <h2>Welcome back</h2>
+    <h2 id="UserName"></h2>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="LoadCustomer" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="CustomerID" class="control-label"></label>
+                    <input asp-for="CustomerID" class="form-control" />
+                    <span asp-validation-for="CustomerID" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="State" class="control-label"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="ZipCode" class="control-label"></label>
+                    <input asp-for="ZipCode" class="form-control" />
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display: none">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger Password"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Continue" class="btn btn-primary" />
+
+                </div>
+                <p>if this isn't you go to Login</p>
+                <a asp-controller="Login" asp-action="Login"> to Login</a>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        const JsonData = localStorage.getItem('User');
+        const JsonData2 = localStorage.getItem('Seed');
+        console.log(JsonData);
+        async function Do(data) {
+            async function setData(data) {
+                return await jQuery.parseJSON(data);
+            }
+            await setData(data).then(customer => {
+                console.log("customer 1st:",customer);
+                //$(".FirstName").value = customer.FirstName;
+                $("input#CustomerID").attr("value", customer.customerID);
+                $("input#FirstName").attr("value", customer.firstName);
+                $("input#LastName").attr("value", customer.lastName);
+                $("input#Email").attr("value", customer.email);
+                $("input#Phone").attr("value", customer.phone);
+                $("input#Address").attr("value", customer.address);
+                $("input#City").attr("value", customer.city);
+                $("input#State").attr("value", customer.state);
+                $("input#ZipCode").attr("value", customer.zipCode);
+                $("input#Password").attr("value", customer.password);
+
+                $("p.UserName").attr("innerHTML", `${customer.firstName} ${customer.lastName}`);
+
+                //$("p.LastName")[0].innerHTML = customer.lastName;UserName
+            });
+        }
+        Do(JsonData);
+        Do(JsonData2);
+
+     </script>
+

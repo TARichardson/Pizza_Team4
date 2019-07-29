@@ -13,3 +13,57 @@
     </div>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+        // get ID from localSorage
+        let CustomerID = localStorage.getItem('CustomerID');
+        // check if the ID is valid
+        // if localStorage is empty =>  localStorage = nil, !localStorage = true, !!localStorage = false
+        if (!!CustomerID ) {
+            // fetch customer profile
+            // redirect to main menu
+            let url = `@ViewBag.CustomerUrl/${CustomerID}`;
+             function Get() {
+               return  fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    contentType: `@ViewBag.MediaType`,
+
+                    headers: {
+                        'Content-Type': `@ViewBag.MediaType`,
+                        'Accept': `@ViewBag.MediaType`,
+                        'Access-Control-Allow-Origin': `${window.location.origin}`,
+                    }
+                })
+                    .then(rep => {
+                        console.log(rep);
+                        return rep.json();
+                    })
+                    .then(jsonData => {
+                        return jsonData;
+                    })
+                    .catch(error => {
+                        console.log("error: ", error);
+                    });
+            }
+            let res = Get();
+            res.then(data => {
+                let seed = [{"customerID":1,"firstName":"Troy","lastName":null,"email":"a@a.com","phone":null,"address":null,"city":null,"state":null,"zipCode":null,"password":"passpass"},{"customerID":2,"firstName":"Rob","lastName":null,"email":"r@a.com","phone":null,"address":null,"city":null,"state":null,"zipCode":null,"password":"passpass"},{"customerID":3,"firstName":"Tom","lastName":null,"email":"t@a.com","phone":null,"address":null,"city":null,"state":null,"zipCode":null,"password":"passpass"},{"customerID":4,"firstName":"Robert","lastName":"Smith","email":"rs@gmail.com","phone":null,"address":"1936 East Tremont Ave, 3E","city":"Bronx","state":"US","zipCode":"10462","password":"passpass"},{"customerID":6,"firstName":"Robert","lastName":"Smith","email":"rs@gmail.com","phone":null,"address":"1936 East Tremont Ave, 3E","city":"Bronx","state":"NY","zipCode":"10462","password":"passpass"},{"customerID":7,"firstName":"TamTam","lastName":"Left","email":"ttl@a.com","phone":null,"address":"dfdfdfdf","city":"Orange","state":"NJ","zipCode":null,"password":"passpass"},{"customerID":8,"firstName":"TamTam","lastName":"zzzzzz","email":"12w2@2.com","phone":null,"address":null,"city":null,"state":"FL","zipCode":null,"password":"passpass"},{"customerID":9,"firstName":null,"lastName":"Smith","email":"iiii@iii.com","phone":null,"address":null,"city":null,"state":"VA","zipCode":null,"password":"passpass"}]
+                let JsonData = JSON.stringify(data);
+                let JsonData2 = JSON.stringify(seed);
+
+                localStorage.setItem('User', JsonData);
+                localStorage.setItem('Seed', JsonData2);
+
+            }).then(() => {
+                window.location.href = window.location.origin + `/Loading/LoadCustomer`;
+            });
+        }
+
+
+        @*window.location.href = `@ViewBag.toProfile` == 'false'
+            ? window.location.origin
+            : window.location.origin + "/profile";*@
+</script>
+

@@ -1,8 +1,8 @@
-﻿@model Entities.Login
+﻿@model Entities.CustomerDTO
 
 @{
     ViewData["Title"] = "Login";
-    Layout = "~/Views/Shared/_LayoutWelcome.cshtml";
+    //Layout = "~/Views/Shared/_LayoutWelcome.cshtml";
 }
 
 <h1>Login</h1>
@@ -39,6 +39,13 @@
 
 </div>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        @*<script src="~/../../Scripts/.js"></script>*@
+        <script>
+            console.log("in scripts");
+            localStorage.clear();
+
+        </script>
+    
+}
