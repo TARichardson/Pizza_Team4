@@ -73,17 +73,17 @@ namespace Entities
         }
         public static Customer operator +(Customer cL, Customer cR)
         {
-            Customer c = new Customer();
-            c.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
-            c.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
-            c.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
-            c.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
-            c.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
-            c.City = (cR.City == null || cR.City == cL.City) ? cL.City : cR.City;
-            c.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
-            c.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
-            c.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
-            return c;
+            //Customer c = new Customer();
+            cL.FirstName = (cR.FirstName == null || cR.FirstName == cL.FirstName) ? cL.FirstName : cR.FirstName;
+            cL.LastName = (cR.LastName == null || cR.LastName == cL.LastName) ? cL.LastName : cR.LastName;
+            cL.Email = (cR.Email == null || cR.Email == cL.Email) ? cL.Email : cR.Email;
+            cL.Phone = (cR.Phone == null || cR.Phone == cL.Phone) ? cL.Phone : cR.Phone;
+            cL.Address = (cR.Address == null || cR.Address == cL.Address) ? cL.Address : cR.Address;
+            cL.City = (cR.City == null || cR.City == cL.City) ? cL.City : cR.City;
+            cL.State = (cR.State == null || cR.State == cL.State) ? cL.State : cR.State;
+            cL.ZipCode = (cR.ZipCode == null || cR.ZipCode == cL.ZipCode) ? cL.ZipCode : cR.ZipCode;
+            cL.Password = (cR.Password == null || cR.Password == cL.Password) ? cL.Password : cR.Password;
+            return cL;
         }
         public static Customer operator +(Customer cL, CustomerDTO cR)
         {

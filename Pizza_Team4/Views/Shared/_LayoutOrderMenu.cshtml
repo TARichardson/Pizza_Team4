@@ -40,7 +40,7 @@
         
             </ul>
             <ul class="nav navbar-nav navbar-right text-capitalize">
-                <li><a asp-controller="Login" asp-action="Login"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+                <li ><a id="logout" asp-controller="Login" asp-action="Login"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
             </ul>
         </div>
     </nav>
@@ -53,8 +53,8 @@
         </div>
     </footer>
 
-    
-
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>

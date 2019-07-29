@@ -34,6 +34,17 @@ namespace PizzaAPI
             services.AddDbContext<APIDbContext>(options =>
             options.UseSqlServer(
             Configuration.GetConnectionString("PizzaDB")));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsOrigin",
+                    builder => builder.WithOrigins("http://localhost:50288/","http://localhost")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyOrigin());
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IItemRepository, ItemRepository>();
@@ -70,6 +81,9 @@ namespace PizzaAPI
             app.UseMvcWithDefaultRoute();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseCors("CorsOrigin");
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }

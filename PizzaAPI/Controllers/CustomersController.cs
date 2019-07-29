@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models.EntityRepository;
+using Microsoft.AspNetCore.Cors;
 
 namespace PizzaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("CorsOrigin")]
     public class CustomersController : ControllerBase
     {
         private readonly APIDbContext _context;
@@ -54,11 +56,16 @@ namespace PizzaAPI.Controllers
         }
         // GET api/Customers
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IEnumerable<Customer>> Get()
         {
-            // error check for status needed
-            return Ok(await _cr.GetAll());
+            //// error check for status needed
+            //var customers = await _cr.GetAll();
+            //return customers;
+
+            var customers = await _context.Customers.ToListAsync<Customer>();
+            return customers;
         }
+
         // GET api/Customers/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)

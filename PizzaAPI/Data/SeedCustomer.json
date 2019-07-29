@@ -1,0 +1,99 @@
+﻿[
+  
+  {
+    "customerID": 1,
+    "firstName": "Troy",
+    "lastName": null,
+    "email": "a@a.com",
+    "phone": null,
+    "address": null,
+    "city": "Orange County",
+    "state": "LA",
+    "zipCode": "78747",
+    "password": "passpass"
+  },
+  {
+    "customerID": 2,
+    "firstName": "Rob",
+    "lastName": null,
+    "email": "r@a.com",
+    "phone": null,
+    "address": null,
+    "city": "Sun County",
+    "state": "NV",
+    "zipCode": "93834",
+    "password": "passpass"
+  },
+  {
+    "customerID": 3,
+    "firstName": "Tom",
+    "lastName": null,
+    "email": "t@a.com",
+    "phone": null,
+    "address": null,
+    "city": "Valley Springs",
+    "state": "VT",
+    "zipCode": null,
+    "password": "passpass"
+  },
+  {
+    "customerID": 4,
+    "firstName": "Robert",
+    "lastName": "Smith",
+    "email": "rs@gmail.com",
+    "phone": null,
+    "address": "1936 East Tremont Ave, 3E",
+    "city": "Bronx",
+    "state": "UT",
+    "zipCode": "23753",
+    "password": "passpass"
+  },
+  {
+    "customerID": 6,
+    "firstName": "Robert",
+    "lastName": "Smith",
+    "email": "rs@gmail.com",
+    "phone": null,
+    "address": "1936 East Tremont Ave, 3E",
+    "city": "Bronx",
+    "state": "NY",
+    "zipCode": "10462",
+    "password": "passpass"
+  },
+  {
+    "customerID": 7,
+    "firstName": "TamTam",
+    "lastName": "Left",
+    "email": "ttl@a.com",
+    "phone": null,
+    "address": "dfdfdfdf",
+    "city": "Orange",
+    "state": "NJ",
+    "zipCode": "48832",
+    "password": "passpass"
+  },
+  {
+    "customerID": 8,
+    "firstName": "TamTam",
+    "lastName": "zzzzzz",
+    "email": "12w2@2.com",
+    "phone": null,
+    "address": null,
+    "city": null,
+    "state": "FL",
+    "zipCode": "89309",
+    "password": "passpass"
+  },
+  {
+    "customerID": 9,
+    "firstName": null,
+    "lastName": "Smith",
+    "email": "iiii@iii.com",
+    "phone": null,
+    "address": null,
+    "city": null,
+    "state": "VA",
+    "zipCode": "12134",
+    "password": "passpass"
+  }
+]

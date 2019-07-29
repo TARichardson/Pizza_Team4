@@ -30,7 +30,7 @@ namespace PizzaAPI.Models.EntityRepository
         {   Customer customer = new Customer(dto);
             APIDbContext.Customers.Add(customer);
             await APIDbContext.SaveChangesAsync();
-            var result = await APIDbContext.Customers.FindAsync(APIDbContext.Customers.Count());
+            var result = await this.Get(dto);
             return result;
         }
         public async Task<Customer> Delete(int id)
@@ -62,7 +62,8 @@ namespace PizzaAPI.Models.EntityRepository
 
         public async Task<IEnumerable<Customer>> GetAll()
         {
-            return await APIDbContext.Customers.ToListAsync();
+            var customers = await APIDbContext.Customers.ToListAsync<Customer>();
+            return customers;
         }
 
         public async Task<Customer> Update(int id, CustomerDTO dto)
