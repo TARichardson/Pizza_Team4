@@ -13,70 +13,34 @@ namespace Pizza_Team4.Controllers
 
     public class OrdersController : Controller
     {
-        static HttpClient client = new HttpClient();
-        string _url = "https://localhost:44361/";
+        private static MyHttpClient _client = new MyHttpClient();
 
         [HttpGet("History/{id}")]
         public async Task<IActionResult> history(int id)
         {
             Console.WriteLine("Method GetCustomersObject()...");
-
-            HttpClient client = new HttpClient();
-
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            client.DefaultRequestHeaders.Accept.Add(
-
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var apiUrl = "api/orders/History/" + id;
-
-            var stringTask = await client.GetStringAsync(_url + apiUrl);
-
-            //var res = stringTask.Result;
-
-            var Orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(stringTask);
+            var Orders = await _client.history(id);
             return View(Orders);
 
         }
         [HttpGet("cart/{id}")]
         public async Task<IActionResult> index(int id)
         {
-            HttpClient client = new HttpClient();
-
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-            var apiUrl = "api/items/";
-            var stringTask = await client.GetStringAsync(_url + apiUrl + id);
-            var items = JsonConvert.DeserializeObject<IEnumerable<Item>>(stringTask);
+            var items = await _client.Cart(id);
             return View(items);
 
         }
         [HttpGet("Transation/{id}")]
         public async Task<IActionResult> Transaction(int id)
         {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-            var apiUrl = "api/orders/Transation/";
-            var stringTask = await client.GetStringAsync(_url + apiUrl + id);
-            var items = JsonConvert.DeserializeObject<IEnumerable<Item>>(stringTask);
+            var items = await _client.Transaction(id);
             return View(items);
 
         }
         [HttpGet("Payment/{Id}")]
         public async Task<IActionResult> Payment(int id)
         {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-            var apiUrl = "api/orders/Payment/";
-            var stringTask = await client.GetStringAsync(_url + apiUrl + id);
-            var payment = JsonConvert.DeserializeObject<IEnumerable<Payment>>(stringTask);
+            var payment = await _client.Payment(id);
             return View(payment);
         }
         [HttpPost("Payment/{Id}")]
@@ -86,13 +50,8 @@ namespace Pizza_Team4.Controllers
             {
                 return NotFound();
             }
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-            var apiUrl = "api/orders/Payment/";
-            var stringTask = await client.GetStringAsync(_url + apiUrl + id);
-            var payment = JsonConvert.DeserializeObject<IEnumerable<Payment>>(stringTask);
+
+            var payment = await _client.Payment(id);
             var card = payment.Where(p => p.CardNumber == id).FirstOrDefault();
             if (card == null)
             {
@@ -103,14 +62,7 @@ namespace Pizza_Team4.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-            var apiUrl = "api/items/";
-            var streamString = await client.DeleteAsync(_url + apiUrl + id);
-            var res = await streamString.Content.ReadAsStringAsync();
-            var item = JsonConvert.DeserializeObject<Item>(res);
+            var item = await _client.DeleteItem(id);
             return RedirectToAction("Index", new { id = id });
 
         }

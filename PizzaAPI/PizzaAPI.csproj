@@ -7,14 +7,6 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\_CustomersController.cs" />
-    <Compile Remove="Migrations\20190723120107_test1.cs" />
-    <Compile Remove="Migrations\20190723120107_test1.Designer.cs" />
-    <Compile Remove="Migrations\20190723120438_test1.cs" />
-    <Compile Remove="Migrations\20190723120438_test1.Designer.cs" />
-    <Compile Remove="Migrations\20190723123616_test1.cs" />
-    <Compile Remove="Migrations\20190723123616_test1.Designer.cs" />
-    <Compile Remove="Migrations\20190726134633_test1.cs" />
-    <Compile Remove="Migrations\20190726134633_test1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

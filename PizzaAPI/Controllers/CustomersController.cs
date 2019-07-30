@@ -25,34 +25,34 @@ namespace PizzaAPI.Controllers
             _context = context;
             _cr = cr;
             _cr.APIDbContext = context;
-            if (_context.Customers.Count() == 0)
-            {
-                _context.Customers.Add(
-                    new Customer
-                    {
-                        FirstName = "Troy",
-                        Email = "a@a.com",
-                        Password = "passpass"
-                    }
-                    );
-                _context.Customers.Add(
-                    new Customer
-                    {
-                        FirstName = "Rob",
-                        Email = "r@a.com",
-                        Password = "passpass"
-                    }
-                    );
-                _context.Customers.Add(
-                     new Customer
-                     {
-                         FirstName = "Tom",
-                         Email = "t@a.com",
-                         Password = "passpass"
-                     }
-                     );
-                _context.SaveChanges();
-            }
+            //if (_context.Customers.Count() == 0)
+            //{
+            //    _context.Customers.Add(
+            //        new Customer
+            //        {
+            //            FirstName = "Troy",
+            //            Email = "a@a.com",
+            //            Password = "passpass"
+            //        }
+            //        );
+            //    _context.Customers.Add(
+            //        new Customer
+            //        {
+            //            FirstName = "Rob",
+            //            Email = "r@a.com",
+            //            Password = "passpass"
+            //        }
+            //        );
+            //    _context.Customers.Add(
+            //         new Customer
+            //         {
+            //             FirstName = "Tom",
+            //             Email = "t@a.com",
+            //             Password = "passpass"
+            //         }
+            //         );
+            //    _context.SaveChanges();
+            //}
         }
         // GET api/Customers
         [HttpGet]

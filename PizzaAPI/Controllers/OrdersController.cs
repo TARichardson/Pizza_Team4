@@ -65,8 +65,8 @@ namespace PizzaAPI.Controllers
             return  Ok(await _cr.GetOrder(id));
         }
         // PUT: api/Orders/5
-        [HttpPut("{id}")]
-        [Route("AddCart/{Id}")]
+        //[HttpPut("{id}")]
+        //[Route("AddCart/{Id}")]
         //public async Task<IActionResult> PutOrder(int id, Order order)
         //{
         //    if (id != order.OrderID)

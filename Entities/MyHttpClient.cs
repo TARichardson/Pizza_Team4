@@ -104,5 +104,77 @@ namespace Entities
             }
             return null;
         }
+
+        public async Task<Item> DeleteItem(int id)
+        {
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue(_mediaType));
+            ApiURL = "items/";
+            var streamString = await _client.DeleteAsync(_url + ApiURL + id);
+            var res = await streamString.Content.ReadAsStringAsync();
+            var item = JsonConvert.DeserializeObject<Item>(res);
+            return item;
+
+        }
+
+        public async Task<IEnumerable<Payment>> Payment(string id)
+        {
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue(_mediaType));
+            ApiURL = "orders/Payment/";
+            var stringTask = await _client.GetStringAsync(_url + ApiURL + id);
+            var payment = JsonConvert.DeserializeObject<IEnumerable<Payment>>(stringTask);
+            return payment;
+        }
+
+        public async Task<IEnumerable<Payment>> Payment(int id)
+        {
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue(_mediaType));
+            ApiURL = "orders/Payment/";
+            var stringTask = await _client.GetStringAsync(_url + ApiURL + $"{id}");
+            var payment = JsonConvert.DeserializeObject<IEnumerable<Payment>>(stringTask);
+            return payment;
+        }
+
+        public async Task<IEnumerable<Item>> Transaction(int id)
+        {
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue(_mediaType));
+            ApiURL = "orders/Transation/";
+            var stringTask = await _client.GetStringAsync(_url + ApiURL + id);
+            var items = JsonConvert.DeserializeObject<IEnumerable<Item>>(stringTask);
+            return items;
+        }
+
+        public async Task<IEnumerable<Item>> Cart(int id)
+        {
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue(_mediaType));
+            ApiURL = "items/";
+            var stringTask = await _client.GetStringAsync(_url + ApiURL + id);
+            var items = JsonConvert.DeserializeObject<IEnumerable<Item>>(stringTask);
+            return items;
+
+        }
+
+        public async Task<IEnumerable<Order>> history(int id)
+        {
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue(_mediaType));
+
+            ApiURL = "orders/History/" + $"{id}";
+
+            var stringTask = await _client.GetStringAsync(_url + ApiURL);
+            var Orders = JsonConvert.DeserializeObject<IEnumerable<Order>>(stringTask);
+            return Orders;
+
+        }
     }
 }

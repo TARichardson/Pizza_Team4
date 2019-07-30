@@ -22,6 +22,19 @@ namespace PizzaAPI.Models
         public DbSet<Category> Category { get; set; }
         public DbSet<CardType> CardType { get; set; }
         public DbSet<Payment> Payment { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            JsonSeed jseed = new JsonSeed();
+            // Seed Customer
+            List<Customer> customerList = new List<Customer>();
+            jseed.LoadSeed("./Data/SeedCustomer.json", ref customerList);
+            modelBuilder.Entity<Customer>().HasData(customerList);
+            
+
+
+        }
     }
 }
 
