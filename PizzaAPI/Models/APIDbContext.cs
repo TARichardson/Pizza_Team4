@@ -27,11 +27,24 @@ namespace PizzaAPI.Models
         {
             base.OnModelCreating(modelBuilder);
             JsonSeed jseed = new JsonSeed();
-            // Seed Customer
+            #region Seed Customer
             List<Customer> customerList = new List<Customer>();
             jseed.LoadSeed("./Data/SeedCustomer.json", ref customerList);
             modelBuilder.Entity<Customer>().HasData(customerList);
-            
+            #endregion
+
+            #region Seed CardType
+            List<CardType> cardtypeList = new List<CardType>();
+            jseed.LoadSeed("./Data/SeedCardtype.json", ref cardtypeList);
+            modelBuilder.Entity<CardType>().HasData(cardtypeList);
+            #endregion
+
+            #region Seed Customer
+            List<Category> CategoryList = new List<Category>();
+            jseed.LoadSeed("./Data/SeedCategory.json", ref CategoryList);
+            modelBuilder.Entity<Category>().HasData(CategoryList);
+            #endregion
+
 
 
         }

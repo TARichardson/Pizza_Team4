@@ -50,6 +50,9 @@ namespace PizzaAPI
             services.AddTransient<IItemRepository, ItemRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICardTypeRepository, CardTypeRepository>();
+
             services.AddMvc();
         }
 

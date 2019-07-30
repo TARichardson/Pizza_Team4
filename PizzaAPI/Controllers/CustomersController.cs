@@ -25,61 +25,35 @@ namespace PizzaAPI.Controllers
             _context = context;
             _cr = cr;
             _cr.APIDbContext = context;
-            //if (_context.Customers.Count() == 0)
-            //{
-            //    _context.Customers.Add(
-            //        new Customer
-            //        {
-            //            FirstName = "Troy",
-            //            Email = "a@a.com",
-            //            Password = "passpass"
-            //        }
-            //        );
-            //    _context.Customers.Add(
-            //        new Customer
-            //        {
-            //            FirstName = "Rob",
-            //            Email = "r@a.com",
-            //            Password = "passpass"
-            //        }
-            //        );
-            //    _context.Customers.Add(
-            //         new Customer
-            //         {
-            //             FirstName = "Tom",
-            //             Email = "t@a.com",
-            //             Password = "passpass"
-            //         }
-            //         );
-            //    _context.SaveChanges();
-            //}
         }
         // GET api/Customers
         [HttpGet]
-        public async Task<IEnumerable<Customer>> Get()
+        public async Task<IActionResult> Get()
         {
-            //// error check for status needed
-            //var customers = await _cr.GetAll();
-            //return customers;
-
             var customers = await _context.Customers.ToListAsync<Customer>();
-            return customers;
+            //// error check for status needed
+            if (customers == null) { return NotFound("records not found."); }
+            return Ok(customers);
         }
 
         // GET api/Customers/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            // error check for status needed
-            return Ok(await _cr.Get(id));
+            var customer = await _cr.Get(id);
+            // error check for status 
+            if (customer == null) { return NotFound("record not found."); }
+            return Ok(customer);
         }
         // GET api/Customers/
         [Route("Profile")]
         [HttpPost]
         public async Task<IActionResult> GetProfile([FromBody] CustomerDTO dto)
         {
-            // error check for status needed
-            return Ok(await _cr.Get(dto));
+            var customer = await _cr.Get(dto);
+            // error check for status 
+            if (customer == null) { return NotFound("record not found."); }
+            return Ok(customer);
         }
 
         // POST api/Customers
@@ -87,7 +61,8 @@ namespace PizzaAPI.Controllers
         public async Task<IActionResult> Post([FromBody] CustomerDTO dto)
         {
             var result = await _cr.Add(dto);
-            // error check for status needed
+            // error check for status 
+            if (result == null) { return BadRequest("Customer was not created."); }
             return CreatedAtAction(
                 nameof(Get),
                 result);
@@ -97,26 +72,19 @@ namespace PizzaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO dto)
         {
-            // error check for status needed
             Customer cus = await _cr.Update(id, dto);
-            IActionResult result;
-            if (cus != null)
-            {
-                result = Ok(cus);
-            }
-            else
-            {
-                result = NotFound("record not founded.");
-            }
-            return result;
+            // error check for status 
+            if (cus == null) { return NotFound("record not found."); }
+            return Ok(cus);
         }
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             Customer customer = await _cr.Delete(id);
-            // error check for status needed
-            return Ok(new KeyValuePair<string,Customer>("Customer delete", customer));
+            // error check for status 
+            if (customer == null) { return NotFound("record not found."); }
+            return Ok(new KeyValuePair<string,Customer>("Customer deleted", customer));
 
         }
     }

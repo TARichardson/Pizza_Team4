@@ -1,0 +1,18 @@
+[
+  {
+    "cardTypeId": 1,
+    "type": "American Express"
+  },
+  {
+    "cardTypeId": 2,
+    "type": "Discover"
+  },
+  {
+    "cardTypeId": 3,
+    "type": "MasterCard"
+  },
+  {
+    "cardTypeId": 4,
+    "type": "Visa"
+  }
+]

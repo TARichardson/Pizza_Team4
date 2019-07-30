@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities;
 using PizzaAPI.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace PizzaAPI.Models.EntityRepository
 {
@@ -17,43 +20,88 @@ namespace PizzaAPI.Models.EntityRepository
             this.APIDbContext = APIDbContext;
         }
 
-        public void Add(Product product)
+        public async Task<Product> Add(Product product)
         {
-            APIDbContext.Products.Add(product);
-            APIDbContext.SaveChanges();
-        }
-        
-        public Product Delete(int id)
-        {
-            Product product = APIDbContext.Products.Find(id);
-            if (product != null)
+            try
             {
-                APIDbContext.Products.Remove(product);
-                APIDbContext.SaveChanges();
+                APIDbContext.Products.Add(product);
+                await APIDbContext.SaveChangesAsync();
+                var result = await APIDbContext.Products.FindAsync(APIDbContext.Products.Count());
+                return result;
             }
-            return product;
+            catch
+            {
+                return null;
+            }
+        }
+        public async Task<Product> Delete(int id)
+        {
+            try
+            {
+                Product product = await APIDbContext.Products.FindAsync(id);
+                if (product != null)
+                {
+                    APIDbContext.Products.Remove(product);
+                    await APIDbContext.SaveChangesAsync();
+                }
+                return product;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public async Task<Product> Get(int id)
+        {
+            try
+            {
+                Product product = await APIDbContext.Products.FindAsync(id);
+                return product;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public async Task<IEnumerable<Product>> GetAll()
+        {
+            try
+            {
+                var product = await APIDbContext.Products.ToListAsync<Product>();
+                return product;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public async Task<Product> Update(Product dto)
+        {
+            try
+            {
+                Product product = await APIDbContext.Products.FindAsync(dto.ProductId);
+                product = dto;
+                APIDbContext.Products.Update(product).State = EntityState.Modified;
+                await APIDbContext.SaveChangesAsync();
+                return product;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public Product Get(int id)
-        { 
-            Product product = APIDbContext.Products.Find(id);
-            
-            return product;
-        }
-
-        public List<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll(int categoryId)
         {
-            return APIDbContext.Products.ToList();
-        }
-
-        public List<Product> GetAll(int categoryId)
-        {
-            return GetAll().Where(b=>b.CategoryId==categoryId).ToList();
-        }
-        public void Update(Product product)
-        {
-            APIDbContext.Products.Update(product);
-            APIDbContext.SaveChanges();
+            try
+            {
+                var product = await APIDbContext.Products.Where(b => b.CategoryId == categoryId).ToListAsync<Product>();
+                return product;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

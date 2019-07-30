@@ -8,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using Entities;
 using PizzaAPI.Models;
 using PizzaAPI.Models.EntityRepository;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace PizzaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("CorsOrigin")]
     public class ItemsController : ControllerBase
     {
         private readonly APIDbContext _context;

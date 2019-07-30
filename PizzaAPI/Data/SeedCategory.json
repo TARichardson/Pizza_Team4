@@ -1,0 +1,22 @@
+[
+  {
+    "categoryID": 1,
+    "type": "Pizza"
+  },
+  {
+    "categoryID": 2,
+    "type": "Stromboli"
+  },
+  {
+    "categoryID": 3,
+    "type": "Calzone"
+  },
+  {
+    "categoryID": 4,
+    "type": "Sides"
+  },
+  {
+    "categoryID": 5,
+    "type": "Drinks"
+  }
+]
