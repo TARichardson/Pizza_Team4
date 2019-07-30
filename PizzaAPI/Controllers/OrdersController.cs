@@ -95,7 +95,7 @@ namespace PizzaAPI.Controllers
 
 
         // DELETE: api/Orders/5
-        [HttpDelete("Delet/{id}")]
+        //[HttpDelete("Delet/{id}")]
         //public async Task<ActionResult<Order>> DeleteOrder(int id)
         //{
         //    var order = await _context.Orders.FindAsync(id);

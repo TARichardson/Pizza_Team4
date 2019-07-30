@@ -100,22 +100,7 @@ namespace Pizza_Team4.Controllers
             }
             return RedirectToAction("History", new { id = card.CustomerId });
         }
-        //[HttpPost("{Id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    client.DefaultRequestHeaders.Accept.Clear();
-        //    client.DefaultRequestHeaders.Accept.Add(
-        //    new MediaTypeWithQualityHeaderValue("application/json"));
-        //    var apiUrl = "api/items/";
-        //    var streamString = await client.DeleteAsync(_url + apiUrl+id);
-        //    var res = await streamString.Content.ReadAsStringAsync();
-        //    var item = JsonConvert.DeserializeObject<Item>(res);
-        //    return RedirectToAction("cart", new { id = id });
 
-        //}
-        [HttpGet("{Id}")]
-        //[HttpDelete("{Id}")]
         public async Task<IActionResult> Delete(int id)
         {
             HttpClient client = new HttpClient();
@@ -129,6 +114,8 @@ namespace Pizza_Team4.Controllers
             return RedirectToAction("Index", new { id = id });
 
         }
+
+     
 
     }
 }
