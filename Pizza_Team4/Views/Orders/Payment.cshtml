@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentId)
+                @Html.DisplayNameFor(model => model.PaymentID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerId)
+                @Html.DisplayNameFor(model => model.CustomerID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CardNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CardTypeId)
+                @Html.DisplayNameFor(model => model.CardTypeID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
@@ -43,16 +43,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PaymentId)
+                @Html.DisplayFor(modelItem => item.PaymentID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
+                @Html.DisplayFor(modelItem => item.CustomerID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CardNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CardTypeId)
+                @Html.DisplayFor(modelItem => item.CardTypeID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
@@ -67,7 +67,7 @@
                 @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
             <td>
-                @Html.ActionLink("History", "pay", new {id=item.CustomerId}) 
+                @Html.ActionLink("History", "pay", new {id=item.CustomerID}) 
 \
             </td>
         </tr>

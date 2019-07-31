@@ -8,18 +8,23 @@ namespace Entities
 {
     public class Product
     {
-        [ForeignKey("Category")]
-        public virtual int CategoryId { set; get; }
-
-        public Category Category { set; get; }
-
         [Key]
         public int ProductId { set; get; }
-
+        public virtual int CategoryID { set; get; }
+        [ForeignKey("CategoryID")]
+        public Category Category { set; get; }
         [Required]
-        public double Price { set; get; }
-
+        [DataType(DataType.Currency)]
+        public decimal Price { set; get; }
         [Required]
         public string Name { set; get; }
+        [DataType(DataType.Text)]
+        public string Description { set; get; }
+        [DataType(DataType.Text)]
+        [StringLength(50, ErrorMessage = "Calories cannot be longer than 50 characters.")]
+        public string Calories { set; get; }
+        [DataType(DataType.Text)]
+        [StringLength(50, ErrorMessage = "URL cannot be longer than 50 characters.")]
+        public string SRC { set; get; }
     }
 }

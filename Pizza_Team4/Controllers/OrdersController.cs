@@ -57,7 +57,7 @@ namespace Pizza_Team4.Controllers
             {
                 return NotFound();
             }
-            return RedirectToAction("History", new { id = card.CustomerId });
+            return RedirectToAction("History", new { id = card.CustomerID });
         }
 
         public async Task<IActionResult> Delete(int id)

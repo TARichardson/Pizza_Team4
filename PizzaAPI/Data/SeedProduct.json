@@ -1,0 +1,372 @@
+﻿[
+  {
+    "productId": 1,
+    "categoryID": 1,
+    "price": 8,
+    "name": "Meat Lovers BreakFast",
+    "description": "Pepperoni, Canadian bacon, hand-pinched Italian sausage and applewood smoked bacon over homemade pizza sause, smothered in mozzarella.",
+    "calories": "1425 cal."
+  },
+  {
+    "productId": 2,
+    "categoryID": 5,
+    "price": 1.5,
+    "name": "Fanta",
+    "description": "",
+    "calories": "750 Cal/Liter"
+  }
+  ]
+//[
+//  {
+//    "productId": 1,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "Meat Lovers BreakFast",
+//    "description": "Pepperoni, Canadian bacon, hand-pinched Italian sausage and applewood smoked bacon over homemade pizza sause, smothered in mozzarella.",
+//    "calories": "1425 cal."
+//  },
+//  {
+//    "productId": 2,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Fanta",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  },
+//  {
+//    "productId": 3,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Nehi Peach",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  },
+//  {
+//    "productId": 4,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Mountain Dew Voltage",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  },
+//  {
+//    "productId": 5,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Mountain Dew",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  },
+//  {
+//    "productId": 6,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Big Red",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  },
+//  {
+//    "productId": 7,
+//    "category": {
+//      "categoryID": 4,
+//      "type": "Sides"
+//    },
+//    "price": 2.5,
+//    "name": "Boneless Wings",
+//    "description": "Choose Buffalo or BBQ sauce",
+//    "calories": "300-670 cal."
+//  },
+//  {
+//    "productId": 8,
+//    "category": {
+//      "categoryID": 4,
+//      "type": "Sides"
+//    },
+//    "price": 2.5,
+//    "name": "Bacon & Blu",
+//    "description": "Romaine, bacon, red onion, grape tomato, goat cheese, blue cheese dressing",
+//    "calories": "420 cal."
+//  },
+//  {
+//    "productId": 9,
+//    "category": {
+//      "categoryID": 4,
+//      "type": "Sides"
+//    },
+//    "price": 2.5,
+//    "name": "Chopped Antipasto",
+//    "description": "Romaine, pepperoni, mozzarella, grape tomato, black olive, banana pepper, red onion, red wine vinegar and olive oil vinagrette",
+//    "calories": "620 cal."
+//  },
+//  {
+//    "productId": 10,
+//    "category": {
+//      "categoryID": 4,
+//      "type": "Sides"
+//    },
+//    "price": 2.5,
+//    "name": "Classic Chicken Caesar",
+//    "description": "Romaine, all-natural chicken breast, parmesan, crouton, caesar dressing",
+//    "calories": "680 cal."
+//  },
+//  {
+//    "productId": 11,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "Classic",
+//    "description": "Mild Italian sausage, piping hot meatballs, tender onions and red bell peppers, and our signature gourmet cheese blend smothered in homemade tomato sauce and wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1385 cal."
+//  },
+//  {
+//    "productId": 12,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "Cheesy Meatball",
+//    "description": "Sliced meatballs, spicy Italian sausage, sauteed onions and green peppers, our signature gourmet cheese blend and homemade tomato sauce wrapped in a golden\u0002brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1580 cal."
+//  },
+//  {
+//    "productId": 13,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "SAUSAGE & PEPPERONI",
+//    "description": "Spicy Italian sausage, tender green peppers and onions, our signature gourmet cheese blend and homemade tomato sauce wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1480 cal."
+//  },
+//  {
+//    "productId": 14,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "PHILLY CHEESE STEAK",
+//    "description": "Thinly sliced steak, sauteed onions and green peppers, fresh mushrooms and our signature gourmet cheese blend smothered in homemade tomato sauce and wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1740 cal."
+//  },
+//  {
+//    "productId": 15,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "Garlic Butter",
+//    "description": "Sliced meatballs, spicy Italian sausage, sauteed onions and green peppers, our signature gourmet cheese blend and homemade tomato sauce wrapped in a golden\u0002brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese.",
+//    "calories": "1658 cal."
+//  },
+//  {
+//    "productId": 16,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "Meat Lovers",
+//    "description": "Piping hot meatballs smothered in our signature gourmet cheese blend and famous homemade tomato sauce, and wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1680 cal."
+//  },
+//  {
+//    "productId": 17,
+//    "category": {
+//      "categoryID": 2,
+//      "type": "Stromboli"
+//    },
+//    "price": 4,
+//    "name": "Chicken Parmesian",
+//    "description": "Tender grilled white chicken meat, fresh tomatoes, sauteed onions and green peppers, crispy bacon and Sarpino's signature gourmet cheese blend wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1145 cal."
+//  },
+//  {
+//    "productId": 18,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Chicken & Basil",
+//    "description": "Tender grilled white chicken meat, fresh tomatoes, sauteed onions and green pepper, crispy bacon and Sarpino's signature gourmet cheese blend wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese",
+//    "calories": "1290 cal."
+//  },
+//  {
+//    "productId": 19,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Cheese & Mushroom",
+//    "description": "Ranch, Mozzarella, Chicken, Bacon, Red Pepper, Green Onion, Mushrooms",
+//    "calories": "1309 cal."
+//  },
+//  {
+//    "productId": 20,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Ham & Cheese",
+//    "description": "Mozzarella, Cheddar Jack, Ricotta, Ham",
+//    "calories": "1334 cal."
+//  },
+//  {
+//    "productId": 21,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Chicken & Sausage",
+//    "description": "Spicy Italian sausage, tender green peppers and onions, our signature gourmet cheese blend and homemade tomato sauce wrapped in a golden-brown crust, brushed with rich garlic butter and sprinkled Parmesan cheese.",
+//    "calories": "1450 cal."
+//  },
+//  {
+//    "productId": 22,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Spinach Ricotta & Sausage",
+//    "description": "Classic Red, Mozzarella, Pepperoni, Sausage, Green Pepper, Red Onion, Mushrooms.",
+//    "calories": "1250 cal."
+//  },
+//  {
+//    "productId": 23,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Buffalo Chicken",
+//    "description": "Buffalo Sauce, Mozzarella, Spicy Chicken, Tomatoes, Arugula.",
+//    "calories": "1160 cal."
+//  },
+//  {
+//    "productId": 24,
+//    "category": {
+//      "categoryID": 3,
+//      "type": "Calzone"
+//    },
+//    "price": 4,
+//    "name": "Meat Lovers",
+//    "description": "Thinly sliced steak, sauteed onion and green peppers, fresh mushrooms and our signature gourmet cheese blend smothered in homemade tomato sauce and wrapped in a golden-browncrust, brushed with rich grarlic butter and sprinkled Parmesan cheese",
+//    "calories": "1620 cal."
+//  },
+//  {
+//    "productId": 25,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "The Vegetarian",
+//    "description": "Green peppers, mushrooms, black olives, tomatoes and onions over our homemade pizza sauce, smothered in mozzarella.",
+//    "calories": "680 cal."
+//  },
+//  {
+//    "productId": 26,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "The Vegan",
+//    "description": "Rosemary herb crust, tomato blend, minced garlic, vegan cheese, vegan sausage crumble, red onion, roasted red pepper, garlic, roasted broccoli, truffle salt, basil.",
+//    "calories": "550 cal."
+//  },
+//  {
+//    "productId": 27,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "The Beast",
+//    "description": "Traditional crust, tomato blend, freshly grated mozzarella, pepperoni, ham, bacon, sausage.",
+//    "calories": "1197 cal."
+//  },
+//  {
+//    "productId": 28,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "Buffalo Chicken",
+//    "description": "Traditional crust, spicy buffalo sause, freshly grated mozzarella, all-ntural chicken breast, banana & red peppper, blue chees dressing, basil.",
+//    "calories": "820 cal."
+//  },
+//  {
+//    "productId": 29,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "Puttanesca",
+//    "description": "Spinach, bruschetta tomatoes, Italian sausage, extra mozzarella cheese, and sprinkled with parmesan cheese and spicy crushed red pepper.",
+//    "calories": "960 cal."
+//  },
+//  {
+//    "productId": 30,
+//    "category": {
+//      "categoryID": 1,
+//      "type": "Pizza"
+//    },
+//    "price": 8,
+//    "name": "Puttanesca",
+//    "description": "Spinach, bruschetta tomatoes, Italian sausage, extra mozzarella cheese, and sprinkled with parmesan cheese and spicy crushed red pepper.",
+//    "calories": "960 cal."
+//  },
+//  {
+//    "productId": 31,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Orange Cream",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  },
+//  {
+//    "productId": 32,
+//    "category": {
+//      "categoryID": 5,
+//      "type": "Drinks"
+//    },
+//    "price": 1.5,
+//    "name": "Strawberry Cream",
+//    "description": "",
+//    "calories": "750 Cal/Liter"
+//  }
+//]

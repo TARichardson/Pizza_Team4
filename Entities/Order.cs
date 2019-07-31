@@ -9,10 +9,13 @@ namespace Entities
 {
     public class Order
     {
-        [ForeignKey("CustomerID")]
-        public Customer Customer { set; get; }
+
         [Key]
         public int OrderID { set; get; }
+        [ForeignKey("CustomerID")]
+        public Customer Customer { set; get; }
+        public virtual int CustomerID { set; get; }
+
         [Column(TypeName = "decimal(18,2)")]
         public decimal? TotalAmount { set; get; }
         [DataType(DataType.Text)]

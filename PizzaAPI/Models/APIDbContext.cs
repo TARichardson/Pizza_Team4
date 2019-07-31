@@ -39,11 +39,19 @@ namespace PizzaAPI.Models
             modelBuilder.Entity<CardType>().HasData(cardtypeList);
             #endregion
 
-            #region Seed Customer
+            #region Seed Category
             List<Category> CategoryList = new List<Category>();
             jseed.LoadSeed("./Data/SeedCategory.json", ref CategoryList);
             modelBuilder.Entity<Category>().HasData(CategoryList);
             #endregion
+
+
+            //#region Seed Product
+            //List<Product> ProductList = new List<Product>();
+            //jseed.LoadSeed("./Data/SeedProduct.json", ref ProductList);
+            ////modelBuilder.Entity<Product>(b => { b.HasData(ProductList); b.OwnsOne(c => c.Category).HasData(CategoryList); }) ;
+            //modelBuilder.Entity<Product>().HasData(ProductList);
+            //#endregion
 
 
 

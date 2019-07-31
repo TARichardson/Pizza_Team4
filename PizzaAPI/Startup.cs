@@ -38,7 +38,7 @@ namespace PizzaAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsOrigin",
-                    builder => builder.WithOrigins("http://localhost:50288/","http://localhost")
+                    builder => builder.WithOrigins("http://localhost:4200/","http://localhost:50288/","http://localhost")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()

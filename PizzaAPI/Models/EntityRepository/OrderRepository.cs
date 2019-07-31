@@ -84,7 +84,7 @@ namespace PizzaAPI.Models.EntityRepository
         public async Task<List<Payment>>Payment(int Id)
         {
             var order = await APIDbContext.Orders.Include("Customer").Where(o => o.OrderID==Id).FirstOrDefaultAsync();
-            var card=await APIDbContext.Payment.Where(p=>p.CustomerId==order.Customer.CustomerID).ToListAsync();
+            var card=await APIDbContext.Payment.Where(p=>p.CustomerID==order.Customer.CustomerID).ToListAsync();
             return card;
         }
     }

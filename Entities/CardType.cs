@@ -13,5 +13,7 @@ namespace Entities
         [DataType(DataType.Text)]
         [DisplayName("Card Type")]
         public string Type { set; get; }
+        public ICollection<Payment> Payments { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ using Entities;
 using PizzaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace PizzaAPI.Models.EntityRepository
 {
@@ -95,7 +95,7 @@ namespace PizzaAPI.Models.EntityRepository
         {
             try
             {
-                var product = await APIDbContext.Products.Where(b => b.CategoryId == categoryId).ToListAsync<Product>();
+                var product = await APIDbContext.Products.Include("Category").Where(b => b.CategoryID == categoryId).ToListAsync<Product>();
                 return product;
             }
             catch
